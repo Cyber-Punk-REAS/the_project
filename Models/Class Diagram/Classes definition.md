@@ -48,4 +48,4 @@
 
 ## Compare
 
--**Comparison(List of List of Days)** . Compares the results of different simulations. Shows on Console or maybe other means the data and then the Winner simulation based on terms of efficacy.
+- **Comparison(List of List of Days)** . Compares the results of different simulations. Shows on Console or maybe other means the data and then the Winner simulation based on terms of efficacy.
