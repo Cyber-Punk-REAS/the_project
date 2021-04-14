@@ -13,10 +13,11 @@
 - Days until cured
 - IsQuarentined
 - Chance of dying
+- IsDead
 
 ## Business
 
-- Type
+- Type (Maybe not necessary)
 - Maximum # of people
 - Outdoors or indoors.
 
@@ -24,14 +25,14 @@
 
 - List of `Person`s
 - List of `Business`es
-- Prevention measures (maybe?)
 
 ## Simulation
 
+- NInfected people at the beginning of the simulation.
 - List of `Region`s
 - List of `Restriction`s
 - **BeginSim(NDays)** . Begins the simulation and returns a list of days with each day passed.
-- **Constructor(NRegions,List or Array with the number of people in each region, List or Array with the number of businesses in each region,NDays)** . Class constructor. Also creates the array or List of regions needed.
+- **Constructor(NRegions,List or Array with the number of people in each region, List or Array with the number of businesses in each region,NDays, NInfected)** . Class constructor. Also creates the array or List of regions needed.
 - **AddRestriction(Restriction)** . Adds a restriction to the List.
 
 ## Restriction (Abstract) 
