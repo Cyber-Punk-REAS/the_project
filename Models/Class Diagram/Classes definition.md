@@ -39,6 +39,7 @@
 
 - Reduction of the infection chance.
 - Percentage of businesses closed. (If it doesnt affect businesses then 0%).
+- AreRegionsClosed
 
 ## Day
 
