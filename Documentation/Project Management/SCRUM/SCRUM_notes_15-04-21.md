@@ -83,3 +83,13 @@
 - Participate in the design of the class diagram.
 ### What problems have you encountered?
 - We've found a [dilema](https://github.com/iLopezosa/the_project/issues/2) during the class diagram design, which is posted as a Github issue.
+
+## Jesús Villén Ruiz
+### What have you done in the last days?
+- The programming team and I have started with the first steps of the project. I saw the videos about Spring .
+### What will you do until next SCRUM meeting?
+-In the next two weeks I plan to continue with my part of the project and learning more about how Spring works. 
+### What problems have you encountered?
+-I had problems related to Eclipse and GitHub. Programming team and I searched for solutions to such problems and we finally solved them.
+The main problem was to synchronize Eclipse with GitHub so as to pull and push our progress. We used to get error messages such as "You don't have permissions to do 
+this" or something like that (I can't remember). 
