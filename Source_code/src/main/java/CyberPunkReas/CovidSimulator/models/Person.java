@@ -3,6 +3,7 @@ package CyberPunkReas.CovidSimulator.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Person {
@@ -16,7 +17,8 @@ public class Person {
 	private float ChToGoOutAtNight;
 	private int businessVisited;
 	
-	
+	@ManyToOne
+	private Region region;
 	
 	public Person(Integer dni, int edad, boolean isInmune, float chInfect, float chInfected, float chToGoOutAtNight, int businessVisited) {
 		this.dni = dni;
