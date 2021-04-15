@@ -1,23 +1,20 @@
 package CyberPunkReas.CovidSimulator.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.HashMap;
 import java.util.Map;
 
-@Entity
 public class Day {
-
-    @Id
-    @GeneratedValue
+	
+	private int id;
     private Map<Region, Integer> numInfected;
     private Map<Region, Integer> numDeaths;
     private Map<Region, Integer> totalPeople;
     private Map<Region, Integer> numImmune;
 
-    public Day (Map<Region, Integer> NInf, Map<Region, Integer> ND, Map<Region, Integer> TP, Map<Region, Integer> NImm) {
-        this.numInfected = NInf;
+    public Day (int id, Map<Region, Integer> NInf, Map<Region, Integer> ND, Map<Region, Integer> TP, Map<Region, Integer> NImm) {
+        
+    	this.id = id;
+    	this.numInfected = NInf;
         this.numDeaths = ND;
         this.totalPeople = TP;
         this.numImmune = NImm;
@@ -37,6 +34,8 @@ public class Day {
     public Map<Region, Integer> getTotalPeople() { return this.totalPeople; }
 
     public Map<Region, Integer> getNumImmune() { return this.numImmune; }
+    
+    public int getId() { return this.id; }
 
     public void setNumInfected(Map<Region, Integer> NI) { this.numInfected = NI; }
 
