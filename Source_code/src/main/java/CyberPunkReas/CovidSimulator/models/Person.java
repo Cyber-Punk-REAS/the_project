@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Person {
 	@Id
 	@GeneratedValue
-	Integer dni;
+	private Integer dni;
 	private int edad;
 	private boolean isInmune;
 	private float ChInfect;
