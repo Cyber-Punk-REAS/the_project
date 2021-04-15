@@ -5,13 +5,20 @@ import javax.persistence.Entity;
 @Entity
 public class Business {
 	
-	private BusinessType type;
+	private boolean isEsential;
 	private int maxPeople;
 	private boolean isIndoors;
 	
-	public BusinessType getType() 
+	public Business(boolean esential, int maxPeople, boolean indoors)
 	{
-		return type;
+		this.isEsential = esential;
+		this.maxPeople = maxPeople;
+		this.isIndoors = indoors;
+	}
+	
+	public boolean getType() 
+	{
+		return isEsential;
 	}
 	
 	public int getMaxPeople() 
@@ -24,9 +31,9 @@ public class Business {
 		return isIndoors;
 	}
 
-	public void setType(BusinessType type) 
+	public void setType(boolean isEsential) 
 	{
-		this.type = type;
+		this.isEsential = isEsential;
 	}
 	
 	public void setMaxPeople(int maxPeople) 
@@ -38,14 +45,14 @@ public class Business {
 	{
 		this.isIndoors = isIndoors;
 	}
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (isEsential ? 1231 : 1237);
 		result = prime * result + (isIndoors ? 1231 : 1237);
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + maxPeople;
 		return result;
 	}
 
@@ -58,10 +65,15 @@ public class Business {
 		if (getClass() != obj.getClass())
 			return false;
 		Business other = (Business) obj;
+		if (isEsential != other.isEsential)
+			return false;
 		if (isIndoors != other.isIndoors)
 			return false;
-		if (type != other.type)
+		if (maxPeople != other.maxPeople)
 			return false;
 		return true;
 	}
+	
+	
+	
 }
