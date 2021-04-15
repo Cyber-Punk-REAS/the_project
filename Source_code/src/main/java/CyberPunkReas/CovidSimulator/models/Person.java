@@ -1,10 +1,14 @@
 package CyberPunkReas.CovidSimulator.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Person {
-	private String dni;
+	@Id
+	@GeneratedValue
+	Integer dni;
 	private int edad;
 	private boolean isInmune;
 	private float ChInfect;
@@ -14,7 +18,7 @@ public class Person {
 	
 	
 	
-	public Person(String dni, int edad, boolean isInmune, float chInfect, float chInfected, float chToGoOutAtNight, int businessVisited) {
+	public Person(Integer dni, int edad, boolean isInmune, float chInfect, float chInfected, float chToGoOutAtNight, int businessVisited) {
 		this.dni = dni;
 		this.edad = edad;
 		this.isInmune = isInmune;
@@ -23,13 +27,13 @@ public class Person {
 		ChToGoOutAtNight = chToGoOutAtNight;
 		this.businessVisited = businessVisited;
 	}
-	public String getDni() {
+	public Integer getDni() {
 		return dni;
 	}
 	public int getEdad() {
 		return edad;
 	}
-	public void setDni(String dni) {
+	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
 	public void setEdad(int edad) {
