@@ -1,19 +1,29 @@
 package CyberPunkReas.CovidSimulator.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Business {
-	
+	@Id
+	@GeneratedValue
+	private Integer id;
 	private boolean isEsential;
 	private int maxPeople;
 	private boolean isIndoors;
 	
-	public Business(boolean esential, int maxPeople, boolean indoors)
+	public Business(Integer id, boolean esential, int maxPeople, boolean indoors)
 	{
+		this.id = id;
 		this.isEsential = esential;
 		this.maxPeople = maxPeople;
 		this.isIndoors = indoors;
+	}
+	
+	public Integer getId()
+	{
+		return this.id;
 	}
 	
 	public boolean getType() 
@@ -29,6 +39,11 @@ public class Business {
 	public boolean isIndoors() 
 	{
 		return isIndoors;
+	}
+	
+	public void setId(Integer id)
+	{
+		this.id = id;
 	}
 
 	public void setType(boolean isEsential) 
