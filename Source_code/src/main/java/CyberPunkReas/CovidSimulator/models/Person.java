@@ -29,15 +29,25 @@ public class Person {
 		ChToGoOutAtNight = chToGoOutAtNight;
 		this.businessVisited = businessVisited;
 	}
+	
+	
+	
+	public Region getRegion() {
+		return region;
+	}
+
 	public Integer getDni() {
 		return dni;
 	}
+	
 	public int getEdad() {
 		return edad;
 	}
+	
 	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
+	
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
@@ -45,32 +55,45 @@ public class Person {
 	public boolean isInmune() {
 		return isInmune;
 	}
+	
 	public float getChInfect() {
 		return ChInfect;
 	}
+	
 	public float getChInfected() {
 		return ChInfected;
 	}
+	
 	public float getChToGoOutAtNight() {
 		return ChToGoOutAtNight;
 	}
+	
 	public int getBusinessVisited() {
 		return businessVisited;
 	}
+	
 	public void setInmune(boolean isInmune) {
 		this.isInmune = isInmune;
 	}
+	
 	public void setChInfect(float chInfect) {
 		ChInfect = chInfect;
 	}
+	
 	public void setChInfected(float chInfected) {
 		ChInfected = chInfected;
 	}
+	
 	public void setChToGoOutAtNight(float chToGoOutAtNight) {
 		ChToGoOutAtNight = chToGoOutAtNight;
 	}
+	
 	public void setBusinessVisited(int businessVisited) {
 		this.businessVisited = businessVisited;
+	}
+	
+	public void setRegion(Region region) {
+		this.region = region;
 	}
 	
 	

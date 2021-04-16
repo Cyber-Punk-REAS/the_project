@@ -3,6 +3,7 @@ package CyberPunkReas.CovidSimulator.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Business {
@@ -13,6 +14,9 @@ public class Business {
 	private int maxPeople;
 	private boolean isIndoors;
 	
+	@ManyToOne
+	private Region r;
+	
 	public Business(Integer id, boolean esential, int maxPeople, boolean indoors)
 	{
 		this.id = id;
@@ -21,6 +25,16 @@ public class Business {
 		this.isIndoors = indoors;
 	}
 	
+	
+	
+	public boolean isEsential() {
+		return isEsential;
+	}
+
+	public Region getR() {
+		return r;
+	}
+
 	public Integer getId()
 	{
 		return this.id;
@@ -59,6 +73,14 @@ public class Business {
 	public void setIndoors(boolean isIndoors) 
 	{
 		this.isIndoors = isIndoors;
+	}
+	
+	public void setEsential(boolean isEsential) {
+		this.isEsential = isEsential;
+	}
+
+	public void setR(Region r) {
+		this.r = r;
 	}
 
 	@Override

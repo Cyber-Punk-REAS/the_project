@@ -13,11 +13,16 @@ public class Region {
 
     @Id
     @GeneratedValue
+    
+    //DEBEMOS AÑADIR UN ID (INT) PARA ESTA CLASE TAMBIÉN SI NO ME EQUIVOCO
     private ArrayList<Person> people;
     private ArrayList<Business> businesses;
     
     @OneToMany (mappedBy = "region")
     List<Person> population;
+    
+    @OneToMany (mappedBy = "r")
+    List<Business> businessList;
 
     public Region (ArrayList<Person> listPeople, ArrayList<Business> listBusinesses) {
         this.people = listPeople;
@@ -28,8 +33,18 @@ public class Region {
         this.people = new ArrayList<>();
         this.businesses = new ArrayList<>();
     }
+    
+    
 
-    public ArrayList<Person> getPeople() { return people; }
+    public List<Person> getPopulation() {
+		return population;
+	}
+
+	public List<Business> getBusinessList() {
+		return businessList;
+	}
+
+	public ArrayList<Person> getPeople() { return people; }
 
     public ArrayList<Business> getBusinesses() { return businesses; }
 
@@ -40,6 +55,14 @@ public class Region {
     public void setPeople(ArrayList<Person> plist) { this.people = plist; }
 
     public void setBusinesses(ArrayList<Business> blist) { this.businesses = blist; }
+    
+    public void setPopulation(List<Person> population) {
+		this.population = population;
+	}
+
+	public void setBusinessList(List<Business> businessList) {
+		this.businessList = businessList;
+	}
 
     @Override
     public int hashCode() {
