@@ -33,8 +33,6 @@ public class Region {
         this.people = new ArrayList<>();
         this.businesses = new ArrayList<>();
     }
-    
-    
 
     public List<Person> getPopulation() {
 		return population;
