@@ -34,13 +34,13 @@
 
 ## Ignacio Lopezosa Serrano
 ### What have you done in the last days?
-- Helped programming team with Git porblems
+- Helped programming team with Git problems
 - Worked on and finished Use Case diagram
 - Worked on and finished Sequence Diagram
 - Contributed to Class Diagram
 - Created SCRUM_template.md for SCRUM meetings
 ### What will you do until next SCRUM meeting?
-- Gather all SCRUM notes from todays meeting and create today's SCRUM meeting's notes
+- Gather all SCRUM notes from today's meeting and create today's SCRUM meeting's notes
 - Create the Project Definition for the upcoming delivery
 - Organize next SCRUM meeting
 - Help out anyone that needs it
