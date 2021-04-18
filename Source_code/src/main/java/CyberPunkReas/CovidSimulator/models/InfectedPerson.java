@@ -1,14 +1,8 @@
 package CyberPunkReas.CovidSimulator.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
-@Entity
 public class InfectedPerson extends Person {
 
-    @Id
-    @GeneratedValue
     private int daysUntilCured;
     private boolean isQuarantined;
     private double chanceOfDeath;
