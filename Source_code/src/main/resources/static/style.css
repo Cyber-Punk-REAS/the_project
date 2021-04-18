@@ -17,3 +17,7 @@ table {
   border-collapse: separate;
   border-spacing: 50px 0;
 }
+
+.scaled {
+	transform: scale(0.2);
+}
