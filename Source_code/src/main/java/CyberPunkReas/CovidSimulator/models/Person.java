@@ -10,8 +10,8 @@ public class Person {
 	@Id
 	@GeneratedValue
 	private Integer dni;
-	private int edad;
-	private boolean isInmune;
+	private int age;
+	private boolean isImmune;
 	private float ChInfect;
 	private float ChInfected;
 	private float ChToGoOutAtNight;
@@ -20,10 +20,10 @@ public class Person {
 	@ManyToOne
 	private Region region;
 	
-	public Person(Integer dni, int edad, boolean isInmune, float chInfect, float chInfected, float chToGoOutAtNight, int businessVisited) {
+	public Person(Integer dni, int age, boolean isImmune, float chInfect, float chInfected, float chToGoOutAtNight, int businessVisited) {
 		this.dni = dni;
-		this.edad = edad;
-		this.isInmune = isInmune;
+		this.age = age;
+		this.isImmune = isImmune;
 		ChInfect = chInfect;
 		ChInfected = chInfected;
 		ChToGoOutAtNight = chToGoOutAtNight;
@@ -40,20 +40,20 @@ public class Person {
 		return dni;
 	}
 	
-	public int getEdad() {
-		return edad;
+	public int getAge() {
+		return age;
 	}
 	
 	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
 	
-	public void setEdad(int edad) {
-		this.edad = edad;
+	public void setAge(int age) {
+		this.age = age;
 	}
 	
-	public boolean isInmune() {
-		return isInmune;
+	public boolean isImmune() {
+		return isImmune;
 	}
 	
 	public float getChInfect() {
@@ -72,8 +72,8 @@ public class Person {
 		return businessVisited;
 	}
 	
-	public void setInmune(boolean isInmune) {
-		this.isInmune = isInmune;
+	public void setImmune(boolean isImmune) {
+		this.isImmune = isImmune;
 	}
 	
 	public void setChInfect(float chInfect) {
@@ -124,7 +124,7 @@ public class Person {
 	
 	@Override
 	public String toString() {
-		return "Person [DNI = " + dni + ", Edad = " + edad + ", isInmune = " + isInmune + ", Chance to infect = " + ChInfect
+		return "Person [DNI = " + dni + ", Age = " + age + ", isImmune = " + isImmune + ", Chance to infect = " + ChInfect
 				+ ", Chance to be infected=" + ChInfected + ", Chance to go out at night = " + ChToGoOutAtNight + ", business visited per day = "
 				+ businessVisited + "]";
 	}
