@@ -65,3 +65,14 @@
 - Since on Trello I am not assigned on any other task, I would help with any problem that is given.
 ### What problems have you encountered?
 - Nothing remarkable.
+
+## Selim Daouda Traore
+### What have you done in the last days?
+- Reviewed all java class.
+- Setup the programming project from git to my computer.
+
+### What will you do until next SCRUM meeting?
+- Help the programming team with the remaining task.
+
+### What problems have you encountered ?
+- Setup the project with IntelliJ. Solved using eclipse.
