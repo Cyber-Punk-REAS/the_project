@@ -1,0 +1,16 @@
+Model - view - controller (MVC)
+--------------------------------------
+MY FIRST CHOICE:
+I have chosen this architecture because as its name suggests,
+ it divides the web application into three parts that would be
+ the controller (in our case it would be to introduce the parameters
+ as restrictions among others), the model (which would be our simulation),
+ and the view (where they will show the results for later, if the 
+user wishes, to be able to compare them), and I think it fits very 
+well with the project and web page prototype that we have in mind.
+
+MY CHOICE AFTER READING SOME OF THE ARCHITECTURES PROPOSED BY CLASSMATES:
+
+I have read the opinion of Alejandro, who has chosen the RULES BASED STYLE,
+ I have found out what this pattern is about and I also find it quite good, 
+maybe my positive point is for RULES BASED STYLE.
