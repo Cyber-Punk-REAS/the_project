@@ -1,11 +1,18 @@
-Model - view - controller (MVC)
+Presentation–abstraction–control (PAC)
 --------------------------------------
 MY FIRST CHOICE:
-I have chosen this architecture because as its name suggests,
- it divides the web application into three parts that would be
- the controller (in our case it would be to introduce the parameters
- as restrictions among others), the model (which would be our simulation),
- and the view (where they will show the results for later, if the 
+For me the best version is MVC pattern, but I can´t choose this one so... I choose PAC, 
+it is an interaction-oriented software architecture, and is somewhat similar to 
+model–view–controller (MVC) in that it separates an interactive system into three types of
+components responsible for specific aspects of the application's functionality.
+The abstraction component retrieves and processes the data, the presentation component
+formats the visual and audio presentation of data, and the control component handles 
+things such as the flow of control and communication between the other two components.
+I have chosen this architecture because
+ it divides the web application into three components that would be
+ the abstraction (in our case it would be to introduce the parameters
+ as restrictions among others), the presentation (which would be our simulation),
+ and the control (where they will show the results for later, if the 
 user wishes, to be able to compare them), and I think it fits very 
 well with the project and web page prototype that we have in mind.
 
