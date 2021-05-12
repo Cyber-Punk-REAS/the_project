@@ -1,7 +1,10 @@
-I think the Model-view-controller pattern could be a good pick as our SUD will be accessed by the client on a web interface.
-This pattern is made up of three components: 
-- The model which is the central component, handling all of the data and operations.
-- The view which handles what the user would see when using the program.
-- The controller which accepts the user inputs and converts it into commands for the model.
-This could work very well with our SUD as we need a view for the client to see the results, a controller to introduce the parameters and obviously a central system to handle the simulation. Also this pattern could be modified or used in conjuction with another pattern.
-For example, we could use this pattern as the main pattern and also use a secondary one to explain how the model would work internally.
+Presentation–abstraction–control (PAC). It is somewhat similar to model–view–controller (MVC) in that it separates an interactive system into three types of components 
+-The abstraction component retrieves and processes the data 
+-The presentation component formats the visual and audio presentation of data
+-The control component handles things such as the flow of control and communication between the other two components.
+
+In contrast to MVC, PAC is used as a hierarchical structure of agents, each consisting of a triad of presentation, abstraction and control parts.
+The agents (or triads) communicate with each other only through the control part of each triad. It also differs from MVC in that within each triad, 
+it completely insulates the presentation (view in MVC) and the abstraction (model in MVC). This provides the option to separately multithread the model 
+and view which can give the user experience of very short program start times, as the user interface (presentation) can be shown before the abstraction has fully initialized.
+Because of this differences I think PAC would be more efficient than MVC.
