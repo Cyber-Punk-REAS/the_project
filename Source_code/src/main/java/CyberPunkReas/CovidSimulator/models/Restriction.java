@@ -14,6 +14,8 @@ public class Restriction {
         timeRestriction = 0;
     }
 
+    //Getters are created in case they are needed for RestrictionTest.java
+
     public boolean isCurfew() {
         return curfew;
     }
@@ -44,6 +46,9 @@ public class Restriction {
     }
 
     public void setTimeRestriction(int timeSpan) {
+        if(timeSpan < 0 | timeSpan > 24) {
+            throw new RuntimeException("Time Restriction parameter out of bounds");
+        }
         this.timeRestriction = timeSpan;
     }
 

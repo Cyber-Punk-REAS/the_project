@@ -17,3 +17,13 @@ table {
   border-collapse: separate;
   border-spacing: 50px 0;
 }
+
+a.Menu:link, a.Menu:visited, a.Menu:active {
+    text-decoration:none;
+	color:black;
+	font-weight:bold;
+}
+
+.Features{
+	margin-top:3em;
+}
