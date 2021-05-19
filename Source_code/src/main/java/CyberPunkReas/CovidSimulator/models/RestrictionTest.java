@@ -2,7 +2,6 @@ package CyberPunkReas.CovidSimulator.models;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.sun.xml.bind.v2.TODO;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
