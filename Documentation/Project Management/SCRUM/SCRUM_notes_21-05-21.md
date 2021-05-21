@@ -61,3 +61,13 @@ work to get started. I finally solved it by asking some classmates.## Carlos Jav
 ### What problems have you encountered?
 - The GitHub problem uploading outdated commits.
 - The class diagram having unnamed attributes and duplicated relations.
+
+## Adrián Meis Asensi
+### What have you done in the last days?
+- Create the first version of my test plan
+- Research and find a possible Design Principle for the SUD
+- Generate a first version of the ParameterProfile java class
+### What will you do until next SCRUM meeting?
+- Continue with the test plan/tests for the ParameterProfile class
+### What problems have you encountered?
+- I had problems with generating the code as the associations on the design model didnt have names on them.
