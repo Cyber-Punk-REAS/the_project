@@ -71,3 +71,13 @@ work to get started. I finally solved it by asking some classmates.## Carlos Jav
 - Continue with the test plan/tests for the ParameterProfile class
 ### What problems have you encountered?
 - I had problems with generating the code as the associations on the design model didnt have names on them.
+
+## Riccardo Capobianco
+### What have you done in the last days?
+I started to work on the class assigned to me with the relative test plan,
+I'm going to deliver it next week due to several exams...
+### What will you do until next SCRUM meeting?
+Finish the definition of the class methods and the test plan for that class, implement the class
+and review the class/test of another teammate
+### What problems have you encountered?
+No problems until now
