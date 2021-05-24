@@ -41,7 +41,6 @@ public class ResultTest {
         Assume.assumeNotNull(r.getListDays().get(d.nextInt(r.getnDays()-1)));
         Assert.assertTrue(r.getInfectedPersons(d.nextInt(r.getnDays()))>=0);
         Assert.assertNotEquals(r.getInfectedPersons(r.getListDays().get(0)), -1);
-        //not completed.
     }
 
 
