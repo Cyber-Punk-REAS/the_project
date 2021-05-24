@@ -1,0 +1,13 @@
+Class under test: Parameter Profile
+Functions to test: Constructor and EditParameters
+
+Test objectives: Test that the functions responds correctly with all types of 
+input data for its constructor. In the edit function test that the changes are applied
+successfully and that it doesnt allow null or unexpected values.
+
+Expected results: For normal values (There should be some limits for the
+duration and the amount of people) the creation of the object. For the rest
+of abnormal imputs the result should be an IllegalArgumentException with
+a message indicating what value/values are the ones causing the problem.
+
+
