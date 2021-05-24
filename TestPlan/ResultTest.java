@@ -10,7 +10,7 @@ public class ResultTest {
      */
     @BeforeClass
     public void init(){
-
+        r = new Result();
     }
 
     /**
@@ -19,7 +19,9 @@ public class ResultTest {
      */
     @Test
     public void testSetListDay(){
-        Assert.fail("not finished yet");
+        Assert.assertNotNull(r.getListDays());
+        Assert.assertTrue(r.getListDays().get(d.nextInt(r.getListDays().size())) >= 0);
+        Assert.assertFalse(r.getListDays().get(d.nextInt(r.getListDays().size())) < 0);
     }
 
     /**
@@ -27,7 +29,8 @@ public class ResultTest {
      */
     @Test
     public void testGetNdays(){
-        Assert.fail("Not finished yet");
+        Assume.assumeNotNull(r.getnDays());
+        Assert.assertFalse(r.getnDays() > 0);
     }
 
     /**
@@ -35,9 +38,9 @@ public class ResultTest {
      */
     @Test
     public void testGetInfectedPersons(){
+        Assume.assumeNotNull(r.getListDays().get(d.nextInt(r.getnDays()-1)));
         Assert.assertTrue(r.getInfectedPersons(d.nextInt(r.getnDays()))>=0);
-        Assert.assertNotEquals(null,r.listDays.get(d.nextInt(r.getnDays()-1)));
-        Assert.assertFalse(r.listDays.get(0) == -1);
+        Assert.assertNotEquals(r.getInfectedPersons(r.getListDays().get(0)), -1);
         //not completed.
     }
 
