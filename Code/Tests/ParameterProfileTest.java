@@ -10,13 +10,14 @@ public class ParameterProfileTest {
 	ParameterProfile p;
 	@Before
     public void init() {
-    	p = new ParameterProfile(0,0,0,1,0);
+    	p = new ParameterProfile(0,3,0,1,0);
     }
 	@After
     public void finish() {
     	p = null;
     }
 	/**
+	 * Test Case 1:
 	 * This test is aimed at checking that the creation of a ParameterProfile object
 	 * is correctly done only if the values given as parameters abide by the rules stated
 	 * */
@@ -116,6 +117,7 @@ public class ParameterProfileTest {
     	
     }
     /**
+     * Test Case 2:
      * This test checks that, if given a correct ParameterProfile object as a parameter, the function
      * changes the values of the object which the function is being called upon with the values of the given
      * object.
@@ -129,6 +131,54 @@ public class ParameterProfileTest {
     	Assert.assertEquals("averageFriends", 2 , p.getAverageFriends(),0);
     	Assert.assertEquals("daysForSimulation", 4, p.getSimulationDays());
     	Assert.assertEquals("unemployment", 5, p.getUnemployment());
+    }
+    /**
+     * Test Case 3:
+     * Check that you receive the appropriate values when using getImmunityChance() method
+     * */
+    @Test
+    public void getStartingImmunityChanceTest() {
+        Assert.assertEquals(0, p.getStartingImmunityChance());
+    }
+    /**
+     * Test Case 4:
+     * Check that you receive the appropriate values when using getUnemployment() method
+     * */
+    @Test
+    public void getUnemploymentTest() {
+        Assert.assertEquals(0, p.getUnemployment());
+    }
+    /**
+     * Test Case 5:
+     * Check that you receive the appropriate values when using getFriendsStandardDeviation() method
+     * */
+    @Test
+    public void getFriendsStandardDeviationTest() {
+        Assert.assertEquals(1,p.getFriendsStandardDeviation(),0);
+    }
+    /**
+     * Test Case 6:
+     * Check that you receive the appropriate values when using getAverageFriends() method
+     * */
+    @Test
+    public void getAverageFriendsTest() {
+    	Assert.assertEquals(3,p.getAverageFriends(),0);
+    }
+    /**
+     * Test Case 7:
+     * Check that you receive different values when using getDaysContagious() method as it uses a random gaussian every time.
+     * */
+    @Test
+    public void getDaysContagiousTest(){
+        Assert.assertNotSame(p.getDaysContagious(), p.getDaysContagious());
+    }
+    /**
+     * Test Case 8:
+     * Check that you receive the appropriate values when using getSimulationDays() method
+     * */
+    @Test
+    public void getSimulationDays() {
+    	Assert.assertEquals(1, p.getSimulationDays());
     }
     
 }

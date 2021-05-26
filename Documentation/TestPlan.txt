@@ -1,5 +1,5 @@
 Class under test: Parameter Profile
-Functions to test: Constructor and EditParameters
+Functions to test: Constructor, getters and EditParameters
 
 Test objectives: Test that the functions responds correctly with all types of 
 input data for its constructor. In the edit function test that the changes are applied
@@ -9,5 +9,69 @@ Expected results: For normal values (There should be some limits for the
 duration and the amount of people) the creation of the object. For the rest
 of abnormal imputs the result should be an IllegalArgumentException with
 a message indicating what value/values are the ones causing the problem.
+
+Test Case 1:
+  Function: Constructor
+  Test Case 1.1: Immunity Chance lower than 0
+  Expected values: If the value given is lower than 0, an IllegalArgumentException should be thrown.
+
+  Test Case 1.2: Immunity Chance higher than 100
+  Expected values: If the value given is higher than 100, an IllegalArgumentException should be thrown.
+
+  Test Case 1.3: Average Friends lower than 0
+  Expected values: If the value given is lower than 0, an IllegalArgumentException should be thrown.
+
+  Test Case 1.4: Average Friends higher than 30
+  Expected values: If the value given is higher than 30, an IllegalArgumentException should be thrown.
+
+  Test Case 1.5: Average Days contagious lower than 0
+  Expected values: If the value given is lower than 0, an IllegalArgumentException should be thrown.
+
+  Test Case 1.6: Average Days contagious higher than 30
+  Expected values: If the value given is higher than 30, an IllegalArgumentException should be thrown.
+
+  Test Case 1.7: Days simulation lower or equal to 0
+  Expected values: If the value given is lower or equal to 0, an IllegalArgumentException should be thrown.
+
+  Test Case 1.8: Days simulation higher than 60
+  Expected values: If the value given is higher than 60, an IllegalArgumentException should be thrown.
+
+  Test Case 1.9: Unemployment chance lower than 0
+  Expected values: If the value given is lower than 0, an IllegalArgumentException should be thrown.
+
+  Test Case 1.10: Unemployment chance higher than 100
+  Expected values: If the value given is higher than 100, an IllegalArgumentException should be thrown.
+
+Test Case 2:
+  Function: EditParameters
+  Test Case 2.1: Values are changed when calling editParameters
+  Expected values: If a correct parameterProfile object is given as a parameter, the values of the object the function is being called upon should
+  change to the values contained in the object given as a parameter.
+
+Test Case 3:
+  Function: getStartingImmunityChance
+  Expected values: The value returned should be the same as the one given when the object was created.
+
+Test Case 4:
+  Function: getUnemployment
+  Expected values: The value returned should be the same as the one given when the object was created.
+
+Test Case 5:
+  Function: getFriendsStandardDeviation
+  Expected values: The value returned should be the same as the one given when the object was created, but divided by 3 (double).
+
+Test Case 6:
+  Function: getAverageFriends
+  Expected values: The value returned should be the same as the one given when the object was created.
+
+Test Case 7:
+  Function: getDaysContagiousTest
+  Expected values: The value returned when calling the function one time shouldnt be the same as the one returned when the function
+  is called again.
+
+Test Case 8:
+  Function: getSimulationDays
+  Expected values: The value returned should be the same as the one given when the object was created.
+  
 
 
