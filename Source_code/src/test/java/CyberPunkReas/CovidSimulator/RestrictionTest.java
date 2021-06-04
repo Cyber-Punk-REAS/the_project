@@ -38,7 +38,6 @@ public class RestrictionTest {
     // Tests whether the setter setBusinessNonEssential works correctly given it's parameters
     @Test
     void testSetBusinessNonEssential() {
-        fail("Not implemented");
         r.setBusinessNonEssential(false);
         assertEquals(false, r.isBusinessNonEssential());
         r.setBusinessNonEssential(true);

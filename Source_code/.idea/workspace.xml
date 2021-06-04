@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="28bb97ef-d86a-44db-b3bf-a28e8a27e967" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CyberPunkReas/CovidSimulator/models/Restriction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CyberPunkReas/CovidSimulator/models/Restriction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/CyberPunkReas/CovidSimulator/RestrictionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CyberPunkReas/CovidSimulator/RestrictionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
