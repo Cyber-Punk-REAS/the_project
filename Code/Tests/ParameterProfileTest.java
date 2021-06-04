@@ -138,7 +138,7 @@ public class ParameterProfileTest {
      * */
     @Test
     public void getStartingImmunityChanceTest() {
-        Assert.assertEquals(0, p.getStartingImmunityChance());
+        Assert.assertEquals("ImmunityChance",0, p.getStartingImmunityChance());
     }
     /**
      * Test Case 4:
@@ -146,7 +146,7 @@ public class ParameterProfileTest {
      * */
     @Test
     public void getUnemploymentTest() {
-        Assert.assertEquals(0, p.getUnemployment());
+        Assert.assertEquals("unemployment",0, p.getUnemployment());
     }
     /**
      * Test Case 5:
@@ -154,7 +154,7 @@ public class ParameterProfileTest {
      * */
     @Test
     public void getFriendsStandardDeviationTest() {
-        Assert.assertEquals(1,p.getFriendsStandardDeviation(),0);
+        Assert.assertEquals("StandardDeviation",1,p.getFriendsStandardDeviation(),0);
     }
     /**
      * Test Case 6:
@@ -162,15 +162,17 @@ public class ParameterProfileTest {
      * */
     @Test
     public void getAverageFriendsTest() {
-    	Assert.assertEquals(3,p.getAverageFriends(),0);
+    	Assert.assertEquals("AverageFriends",3,p.getAverageFriends(),0);
     }
     /**
      * Test Case 7:
-     * Check that you receive different values when using getDaysContagious() method as it uses a random gaussian every time.
+     * Check that you receive different values when using getDaysContagious() method as it uses a random gaussian every time, and that those values
+	 * are atleast bigger than the parameter given to the constructor.
      * */
     @Test
     public void getDaysContagiousTest(){
-        Assert.assertNotSame(p.getDaysContagious(), p.getDaysContagious());
+        Assert.assertNotSame("RandomDaysContagious",p.getDaysContagious(), p.getDaysContagious());
+		Assert.assertTrue(p.getDaysContagious() > 0);
     }
     /**
      * Test Case 8:
@@ -178,7 +180,7 @@ public class ParameterProfileTest {
      * */
     @Test
     public void getSimulationDays() {
-    	Assert.assertEquals(1, p.getSimulationDays());
+    	Assert.assertEquals("SimulationDays",1, p.getSimulationDays());
     }
     
 }

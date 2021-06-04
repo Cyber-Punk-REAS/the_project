@@ -3,7 +3,8 @@ Functions to test: Constructor, getters and EditParameters
 
 Test objectives: Test that the functions responds correctly with all types of 
 input data for its constructor. In the edit function test that the changes are applied
-successfully and that it doesnt allow null or unexpected values.
+successfully and that it doesnt allow null or unexpected values. The getters should return the values given
+in the constructor on most cases.
 
 Expected results: For normal values (There should be some limits for the
 duration and the amount of people) the creation of the object. For the rest
@@ -67,7 +68,7 @@ Test Case 6:
 Test Case 7:
   Function: getDaysContagiousTest
   Expected values: The value returned when calling the function one time shouldnt be the same as the one returned when the function
-  is called again.
+  is called again. Also this value should be higher than the one given to the constructor.
 
 Test Case 8:
   Function: getSimulationDays
