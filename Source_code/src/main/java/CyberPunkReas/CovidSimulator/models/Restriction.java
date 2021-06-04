@@ -45,7 +45,7 @@ public class Restriction {
         this.businessNonEssential = businessNonEssential;
     }
 
-    public void setTimeRestriction(int timeSpan) {
+    public void setTimeRestriction(int timeSpan) throws RuntimeException {
         if(timeSpan < 0 | timeSpan > 24) {
             throw new RuntimeException("Time Restriction parameter out of bounds");
         }
