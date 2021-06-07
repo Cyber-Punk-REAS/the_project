@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,81 +15,30 @@ public class Region {
     @Id
     @GeneratedValue
     
-    //DEBEMOS AÑADIR UN ID (INT) PARA ESTA CLASE TAMBIÉN SI NO ME EQUIVOCO
-    private ArrayList<Person> people;
-    private ArrayList<Business> businesses;
-    
-    @OneToMany (mappedBy = "region")
-    List<Person> population;
-    
-    @OneToMany (mappedBy = "r")
-    List<Business> businessList;
-
-    public Region (ArrayList<Person> listPeople, ArrayList<Business> listBusinesses) {
-        this.people = listPeople;
-        this.businesses = listBusinesses;
-    }
-
-    public Region () {
-        this.people = new ArrayList<>();
-        this.businesses = new ArrayList<>();
-    }
-
-    public List<Person> getPopulation() {
-		return population;
+	private ArrayList<Area> areas;
+	
+	private String name;
+	
+	private int areasNumber;
+	
+	public Region(String name, int areasNumber) {
+		this.name = name;
+		this.areasNumber = areasNumber;
 	}
-
-	public List<Business> getBusinessList() {
-		return businessList;
+	
+	public void setRegionName( String name )
+	{
+		this.name = name;
 	}
-
-	public ArrayList<Person> getPeople() { return people; }
-
-    public ArrayList<Business> getBusinesses() { return businesses; }
-
-    public void addPerson(Person p) { this.people.add(p); }
-
-    public void addBusiness(Business b) { this.businesses.add(b); }
-
-    public void setPeople(ArrayList<Person> plist) { this.people = plist; }
-
-    public void setBusinesses(ArrayList<Business> blist) { this.businesses = blist; }
-    
-    public void setPopulation(List<Person> population) {
-		this.population = population;
+	
+	public void setAreasNumber( int areasNumber )
+	{
+		this.areasNumber = areasNumber;
 	}
-
-	public void setBusinessList(List<Business> businessList) {
-		this.businessList = businessList;
+	
+	public void addArea(Area area) {
+		areas.add(area);
 	}
-
-    @Override
-    public int hashCode() {
-        int res = 0;
-        for (Person p : people) {
-            res += p.hashCode();
-        }
-        for(Business b : businesses) {
-            res += b.hashCode();
-        }
-        return res;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Region other = (Region) obj;
-        boolean res = true;
-        for (Person p : people) {
-            res = other.people.contains(p);
-        }
-        for(Business b : businesses) {
-            res = other.businesses.contains(b);
-        }
-        return res;
-    }
+	
 
 }

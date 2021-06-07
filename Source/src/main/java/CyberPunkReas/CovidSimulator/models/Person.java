@@ -12,54 +12,64 @@ import javax.persistence.ManyToOne;
 public class Person {
 	@Id
 	@GeneratedValue
-	
+
 	@ManyToOne
-    private static int _id_ = 0;
-    private Random random = new Random();
-    private int id;
-    private Area area;
-    private boolean startingImmunity;
-    private boolean alive;
-    private boolean employed;
-    private Business business;
-    private double contagiousness;
-    private Person[] friends;
+	private static int _id_ = 0;
+	private Random random = new Random();
+	private int id;
+	private Area area;
+	private boolean startingImmunity;
+	private boolean alive;
+	private boolean employed;
+	private Business business;
+	private double contagiousness;
+	private Person[] friends;
 
-    public Person(Area area){
-        this.id = Person._id_++;
-        this.area = area;
-        this.startingImmunity = false;
-        this.employed = false;
-        this.alive = true;
-    }
+	public Person(Area area){
+		this.id = Person._id_++;
+		this.area = area;
+		this.startingImmunity = false;
+		this.employed = false;
+		this.alive = true;
+	}
+	
+	public Person(Area area, int immunityChance, int unemployment, Business business){
+		this.id = Person._id_++;
+		this.area = area;
+		this.alive = true;
+		setStartingImmunity(immunityChance);
+		setWork(unemployment, Business business);
+		setBusiness(business);
+	}
 
-    public void setBusiness(Business business){
-        if(employed)
-            this.business = business;
-        else
-            this.business = null;
-    }
+	public void setBusiness(Business business){
+		if(employed)
+			this.business = business;
+		else
+			this.business = null;
+	}
 
-    public void setStartingImmunity(int immunityChance){
-        if(random.nextInt(100) < immunityChance)
-            startingImmunity = true;
-    }
+	public void setStartingImmunity(int immunityChance){
+		if(random.nextInt(100) < immunityChance)
+			startingImmunity = true;
+	}
 
-    public void setWork(int unemployment){
-        if(random.nextInt(100) > unemployment)
-            employed = true;
-    }
+	public void setWork(int unemployment){
+		if(random.nextInt(100) > unemployment)
+			employed = true;
+	}
 
-    public void setFriends(double averageFriends, double friendsStandardDeviation, List<Person> people){
-        for(int i = 0; i < Person.rndFriends( averageFriends, friendsStandardDeviation); i++)
-            friends[i] = people.get(random.nextInt(people.size()));
-    }
+	public void setFriends(double averageFriends, double friendsStandardDeviation, List<Person> people){
+		for(int i = 0; i < Person.rndFriends( averageFriends, friendsStandardDeviation); i++)
+			friends[i] = people.get(random.nextInt(people.size()));
+	}
 
-    
-    private static int rndFriends(double averageFriends, double friendsStandardDeviation){
-        Random rnd = new Random();
-        
-        return (int) ((rnd.nextGaussian() + averageFriends) * friendsStandardDeviation);    }
-    
-    
+
+	private static int rndFriends(double averageFriends, double friendsStandardDeviation){
+		Random rnd = new Random();
+
+		return (int) ((rnd.nextGaussian() + averageFriends) * friendsStandardDeviation);    
+	}
+
+	public 
 }
