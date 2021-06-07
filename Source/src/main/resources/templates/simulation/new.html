@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Simulation</h1>
+    <form action="#" th:action="@{/simulation/new}" th:object="${simulation}" method="post">
+        <label for="name">Name</label>
+        <input type="text" th:field="*{simulation.averageFriends}" id="name" placeholder="Name">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{simulation.averageFriends}"></span>
+        <input type="submit" value="Run Simulation">
+    </form>
+</body>
+</html>

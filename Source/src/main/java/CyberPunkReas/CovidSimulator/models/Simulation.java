@@ -1,69 +1,57 @@
 package CyberPunkReas.CovidSimulator.models;
 
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Simulation {
-	
-	private int NBeginningInfected;
-	private List<Region> regions;
-	private List<Restriction> restrictions;
-	private int NDays;
-	
-	public Simulation(int peopleInfectedBeginning, List<Region> regions, List<Restriction> restrictions, int nDays)
-	{
-		this.NBeginningInfected = peopleInfectedBeginning;
-		this.regions = regions;
-		this.restrictions = restrictions;
-		this.NDays = nDays;
-	}
-	
-	
-	
-	public List<Restriction> getRestrictions() {
-		return restrictions;
-	}
+    private int averageFriends;
+    private int friendsStandardDeviation;
+    private int unemployment;
+    private int immunityChance;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-	public int getNBeginningInfected() {
-		return NBeginningInfected;
-	}
+    public int getAverageFriends() {
+        return averageFriends;
+    }
 
-	public List<Region> getRegions() {
-		return regions;
-	}
+    public void setAverageFriends(int averageFriends) {
+        this.averageFriends = averageFriends;
+    }
 
-	public int getNDays() {
-		return NDays;
-	}
+    public int getFriendsStandardDeviation() {
+        return friendsStandardDeviation;
+    }
 
-	public void setNBeginningInfected(int nBeginningInfected) {
-		NBeginningInfected = nBeginningInfected;
-	}
+    public void setFriendsStandardDeviation(int friendsStandardDeviation) {
+        this.friendsStandardDeviation = friendsStandardDeviation;
+    }
 
-	public void setRegions(List<Region> regions) {
-		this.regions = regions;
-	}
+    public int getUnemployment() {
+        return unemployment;
+    }
 
-	public void setNDays(int nDays) {
-		NDays = nDays;
-	}
-	
-	public void setRestrictions(List<Restriction> restrictions) {
-		this.restrictions = restrictions;
-	}
-	
-	//OTHER METHODS
-	public void BeginSim(int nDays)
-	{
-		//IT RETURNS A LIST OF DAYS
-	}
-	
-	public void AddRestriction(Restriction res)
-	{
-		//Adds a restriction to the List.
-	}
-	
-	public void CloseRegions()
-	{
-		
-	}
+    public void setUnemployment(int unemployment) {
+        this.unemployment = unemployment;
+    }
+
+    public int getImmunityChance() {
+        return immunityChance;
+    }
+
+    public void setImmunityChance(int immunityChance) {
+        this.immunityChance = immunityChance;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Id
+    public Long getId() {
+        return id;
+    }
 }
