@@ -1,5 +1,6 @@
 package CyberPunkReas.CovidSimulator.models;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -85,8 +86,8 @@ public class Person {
 			}
 		}
 	}
-
-	public int getId() {
+  
+  public int getId() {
 		return id;
 	}
 
@@ -117,6 +118,4 @@ public class Person {
 	public Person[] getFriends() {
 		return friends;
 	}
-
-	
 }
