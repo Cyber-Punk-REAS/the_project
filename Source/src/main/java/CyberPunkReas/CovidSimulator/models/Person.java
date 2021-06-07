@@ -5,44 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Person {
 	@Id
 	@GeneratedValue
-
-	@ManyToOne
-	private static int _id_ = 0;
-	private Random random = new Random();
 	private int id;
+
+	private Random random = new Random();
+	@ManyToOne
 	private Area area;
 	private boolean startingImmunity;
 	private boolean alive;
 	private boolean employed;
-	private Business business;
-	private double contagiousness;
-	private Person[] friends;
 
-	public Person(Area area){
-		this.id = Person._id_++;
-		this.area = area;
-		this.startingImmunity = false;
-		this.employed = false;
-		this.alive = true;
-	}
-	
-	public Person(Area area, ParameterProfile param, Business business){
-		this.id = Person._id_++;
-		this.area = area;
-		this.alive = true;
-		setStartingImmunity(param);
-		setWork(param, Business business);
-		setBusiness(business);
-	}
+	private double contagiousness;
+	@ManyToOne
+	private Business business;
+	@ManyToMany
+	private List<Person> friends;
 
 	public void setBusiness(Business business){
 		if(employed)
@@ -63,18 +45,18 @@ public class Person {
 
 	public void setFriends(ParameterProfile param, List<Person> people){
 		for(int i = 0; i < Person.rndFriends(param); i++)
-			friends[i] = people.get(random.nextInt(people.size()));
+			friends.set(i, people.get(random.nextInt(people.size())));
 	}
 
 
 	private static int rndFriends(ParameterProfile param){
 		Random rnd = new Random();
 
-		return (int) ((rnd.nextGaussian() + param.getAverageFriends()) * param.getFriendsStandardDeviation());    
+		return (int) ((rnd.nextGaussian() + param.getAverageFriends()) * param.getFriendsStandardDeviation());
 	}
 
-	public ArrayList<Person> getPeopleCouldMeet() {
-		ArrayList<Person> peopleCouldMeet = new ArrayList<>();
+	public List<Person> getPeopleCouldMeet() {
+		List<Person> peopleCouldMeet = new ArrayList<>();
 		for(Person friend: friends) {
 			if(area.getRestrictionPolicy().isCurfew()) {
 				if(friend.getArea().getId() == area.getId())
@@ -85,6 +67,7 @@ public class Person {
 					peopleCouldMeet.add(friend);
 			}
 		}
+		return peopleCouldMeet;
 	}
   
   public int getId() {
@@ -115,7 +98,15 @@ public class Person {
 		return contagiousness;
 	}
 
-	public Person[] getFriends() {
+	public List<Person> getFriends() {
 		return friends;
+	}
+
+	public void setContagiousness(double contagiousness) {
+		this.contagiousness = contagiousness;
+	}
+
+	public void setFriends(List<Person> friends) {
+		this.friends = friends;
 	}
 }

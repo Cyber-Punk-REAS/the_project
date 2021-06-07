@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-class Area {
+public class Area {
     @Id
     @GeneratedValue
     private int id;

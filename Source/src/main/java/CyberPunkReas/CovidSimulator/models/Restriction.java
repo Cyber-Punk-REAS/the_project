@@ -16,24 +16,6 @@ public class Restriction {
     private int timeRestriction;
     private boolean mobility;
 
-    public Restriction() {
-        this.curfew = false;
-        this.businessEssentialClosed = false;
-        this.businessNonEssentialClosed = false;
-        this.timeRestriction = 0;
-        this.mobility = false;
-    }
-
-    public Restriction(boolean curfew, boolean businessE, boolean businessNE, int timeRestriction, boolean mobility) {
-        this.curfew = curfew;
-        this.businessEssentialClosed = businessE;
-        this.businessNonEssentialClosed = businessNE;
-        this.timeRestriction = timeRestriction;
-        this.mobility = false;
-    }
-
-    //Getters are created in case they are needed for RestrictionTest.java
-
     public boolean isCurfew() {
         return curfew;
     }

@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,19 +13,20 @@ public class Region {
 
     @Id
     @GeneratedValue
-    
-	private ArrayList<Area> areas;
+	private int id;
+
+    @OneToMany
+	private List<Area> areas = new ArrayList<>();
 	
 	private String name;
 	
 	private int areasNumber;
-	
-	public Region(String name, int areasNumber) {
-		this.name = name;
-		this.areasNumber = areasNumber;
+
+	public Region() {
+
 	}
-	
-	public void setRegionName( String name )
+
+	public void setName(String name )
 	{
 		this.name = name;
 	}
@@ -40,7 +40,7 @@ public class Region {
 		areas.add(area);
 	}
 
-	public String getRegionName(){
+	public String getName(){
 		return name;
 	}
 
@@ -48,13 +48,19 @@ public class Region {
 		return areasNumber;
 	}
 
-	public Area getAreabyIndex(int i){
+	public Area getAreaByIndex(int i){
 		return areas.get(i);
 	}
 
-	public List<Area> getAreasList(){
+	public List<Area> getAreas(){
 		return areas;
 	}
-	
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }
