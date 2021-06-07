@@ -1,5 +1,6 @@
 package CyberPunkReas.CovidSimulator.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -71,5 +72,51 @@ public class Person {
 		return (int) ((rnd.nextGaussian() + averageFriends) * friendsStandardDeviation);    
 	}
 
-	public 
+	public ArrayList<Person> getPeopleCouldMeet() {
+		ArrayList<Person> peopleCouldMeet = new ArrayList<>();
+		for(Person friend: friends) {
+			if(area.getRestrictionPolicy().isCurfew()) {
+				if(friend.getArea().getId() == area.getId())
+					peopleCouldMeet.add(friend);
+			}
+			else {
+				if(!friend.getArea().getRestrictionPolicy().isCurfew())
+					peopleCouldMeet.add(friend);
+			}
+		}
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public Area getArea() {
+		return area;
+	}
+
+	public boolean isStartingImmunity() {
+		return startingImmunity;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public boolean isEmployed() {
+		return employed;
+	}
+
+	public Business getBusiness() {
+		return business;
+	}
+
+	public double getContagiousness() {
+		return contagiousness;
+	}
+
+	public Person[] getFriends() {
+		return friends;
+	}
+
+	
 }
