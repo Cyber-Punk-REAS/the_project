@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select number of areas</title>
+
+    <link href = "webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel = "stylesheet">
+    <link href = "style.css" rel = "stylesheet">
+</head>
+<body>
+    <h1>Simulation</h1>
+    <form method="get" action="#" th:action="@{/simulation/new}">
+        <label for="areas">Number of areas</label>
+        <input type="number" id="areas" placeholder="Number of areas" name="areas">
+        <input type="submit" value="Continue">
+    </form>
+    <!--/*@thymesVar id="parameters" type="CyberPunkReas.CovidSimulator.models.ParameterProfile"*/-->
+<!--    <form action="#" th:action="@{/simulation/run}" th:object="${parameters}" method="post">-->
+<!--        <label for="executionTime">Execution Time</label>-->
+<!--        <input type="text" th:field="*{executionTime}" id="executionTime" placeholder="Execution Time">-->
+<!--        <span th:if="${#fields.hasErrors('executionTime')}" th:errors="*{executionTime}"></span>-->
+<!--        <input type="submit" value="Run Simulation">-->
+<!--    </form>-->
+</body>
+</html>

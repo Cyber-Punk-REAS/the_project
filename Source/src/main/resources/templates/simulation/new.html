@@ -5,12 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Simulation</h1>
-    <form action="#" th:action="@{/simulation/new}" th:object="${simulation}" method="post">
-        <label for="name">Name</label>
-        <input type="text" th:field="*{simulation.averageFriends}" id="name" placeholder="Name">
-        <span th:if="${#fields.hasErrors('name')}" th:errors="*{simulation.averageFriends}"></span>
-        <input type="submit" value="Run Simulation">
+    <!--/*@thymesVar id="simulation" type="CyberPunkReas.CovidSimulator.models.SimulationDto"*/-->
+    <form action="#" th:action="@{/simulation/send}" th:object="${simulation}" method="post">-->
+        <input hidden th:name="|region.areasNumber|" th:value="${simulation.region.areasNumber}">
+        <div th:each="area, itemStat : ${simulation.region.areas}">
+            <!--/*@thymesVar id="area" type="CyberPunkReas.CovidSimulator.models.Area"*/-->
+            <label th:for="|region.areas[${itemStat.index}].id|">Id</label>
+            <input th:name="|region.areas[${itemStat.index}].id|" th:value="${area.getId()}"/>
+            <label th:for="|region.areas[${itemStat.index}].name|">Name</label>
+            <input th:name="|region.areas[${itemStat.index}].name|" th:value="${area.getName()}"/>
+        </div>
+        <input type="submit" value="Continue">
     </form>
 </body>
 </html>
