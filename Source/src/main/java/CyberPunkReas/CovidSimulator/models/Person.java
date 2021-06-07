@@ -1,5 +1,10 @@
 package CyberPunkReas.CovidSimulator.models;
 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,125 +14,108 @@ import javax.persistence.ManyToOne;
 public class Person {
 	@Id
 	@GeneratedValue
-	private Integer dni;
-	private int age;
-	private boolean isImmune;
-	private float ChInfect;
-	private float ChInfected;
-	private float ChToGoOutAtNight;
-	private int businessVisited;
-	
+
 	@ManyToOne
-	private Region region;
-	
-	public Person(Integer dni, int age, boolean isImmune, float chInfect, float chInfected, float chToGoOutAtNight, int businessVisited) {
-		this.dni = dni;
-		this.age = age;
-		this.isImmune = isImmune;
-		ChInfect = chInfect;
-		ChInfected = chInfected;
-		ChToGoOutAtNight = chToGoOutAtNight;
-		this.businessVisited = businessVisited;
+	private static int _id_ = 0;
+	private Random random = new Random();
+	private int id;
+	private Area area;
+	private boolean startingImmunity;
+	private boolean alive;
+	private boolean employed;
+	private Business business;
+	private double contagiousness;
+	private Person[] friends;
+
+	public Person(Area area){
+		this.id = Person._id_++;
+		this.area = area;
+		this.startingImmunity = false;
+		this.employed = false;
+		this.alive = true;
 	}
 	
-	
-	
-	public Region getRegion() {
-		return region;
+	public Person(Area area, ParameterProfile param, Business business){
+		this.id = Person._id_++;
+		this.area = area;
+		this.alive = true;
+		setStartingImmunity(param);
+		setWork(param, Business business);
+		setBusiness(business);
 	}
 
-	public Integer getDni() {
-		return dni;
+	public void setBusiness(Business business){
+		if(employed)
+			this.business = business;
+		else
+			this.business = null;
 	}
-	
-	public int getAge() {
-		return age;
+
+	public void setStartingImmunity(ParameterProfile param){
+		if(random.nextInt(100) < param.getImmunityChance())
+			startingImmunity = true;
 	}
-	
-	public void setDni(Integer dni) {
-		this.dni = dni;
+
+	public void setWork(ParameterProfile param){
+		if(random.nextInt(100) > param.getUnemployment())
+			employed = true;
 	}
-	
-	public void setAge(int age) {
-		this.age = age;
+
+	public void setFriends(ParameterProfile param, List<Person> people){
+		for(int i = 0; i < Person.rndFriends(param); i++)
+			friends[i] = people.get(random.nextInt(people.size()));
 	}
-	
-	public boolean isImmune() {
-		return isImmune;
+
+
+	private static int rndFriends(ParameterProfile param){
+		Random rnd = new Random();
+
+		return (int) ((rnd.nextGaussian() + param.getAverageFriends()) * param.getFriendsStandardDeviation());    
 	}
-	
-	public float getChInfect() {
-		return ChInfect;
+
+	public ArrayList<Person> getPeopleCouldMeet() {
+		ArrayList<Person> peopleCouldMeet = new ArrayList<>();
+		for(Person friend: friends) {
+			if(area.getRestrictionPolicy().isCurfew()) {
+				if(friend.getArea().getId() == area.getId())
+					peopleCouldMeet.add(friend);
+			}
+			else {
+				if(!friend.getArea().getRestrictionPolicy().isCurfew())
+					peopleCouldMeet.add(friend);
+			}
+		}
 	}
-	
-	public float getChInfected() {
-		return ChInfected;
+  
+  public int getId() {
+		return id;
 	}
-	
-	public float getChToGoOutAtNight() {
-		return ChToGoOutAtNight;
+
+	public Area getArea() {
+		return area;
 	}
-	
-	public int getBusinessVisited() {
-		return businessVisited;
+
+	public boolean isStartingImmunity() {
+		return startingImmunity;
 	}
-	
-	public void setImmune(boolean isImmune) {
-		this.isImmune = isImmune;
+
+	public boolean isAlive() {
+		return alive;
 	}
-	
-	public void setChInfect(float chInfect) {
-		ChInfect = chInfect;
+
+	public boolean isEmployed() {
+		return employed;
 	}
-	
-	public void setChInfected(float chInfected) {
-		ChInfected = chInfected;
+
+	public Business getBusiness() {
+		return business;
 	}
-	
-	public void setChToGoOutAtNight(float chToGoOutAtNight) {
-		ChToGoOutAtNight = chToGoOutAtNight;
+
+	public double getContagiousness() {
+		return contagiousness;
 	}
-	
-	public void setBusinessVisited(int businessVisited) {
-		this.businessVisited = businessVisited;
+
+	public Person[] getFriends() {
+		return friends;
 	}
-	
-	public void setRegion(Region region) {
-		this.region = region;
-	}
-	
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
-		return result;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Person other = (Person) obj;
-		if (dni == null) {
-			if (other.dni != null)
-				return false;
-		} else if (!dni.equals(other.dni))
-			return false;
-		return true;
-	}
-	
-	@Override
-	public String toString() {
-		return "Person [DNI = " + dni + ", Age = " + age + ", isImmune = " + isImmune + ", Chance to infect = " + ChInfect
-				+ ", Chance to be infected=" + ChInfected + ", Chance to go out at night = " + ChToGoOutAtNight + ", business visited per day = "
-				+ businessVisited + "]";
-	}
-	
-	
 }
