@@ -1,4 +1,4 @@
-package Master.Design_Models;
+package CyberPunkReas.CovidSimulator.models;
 
 public class Restriction {
 
