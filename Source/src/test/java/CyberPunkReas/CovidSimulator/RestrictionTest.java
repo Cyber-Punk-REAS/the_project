@@ -24,44 +24,48 @@ public class RestrictionTest {
         assertEquals(false, r.isCurfew());
     }
 
-    // Tests whether the setter setBusinessEssential works correctly given it's parameters
+    // Tests whether the setter setBusinessClosed works correctly given it's parameters
     @Test
-    void testSetBusinessEssential() {
-        r.setBusinessEssential(true);
-        assertEquals(true, r.isBusinessEssential());
-        r.setBusinessEssential(false);
-        assertEquals(false, r.isBusinessEssential());
+    void testSetBusinessClosed() {
         // If Essential businesses are closed, non-essential businesses should be closed too.
+        r.setBusinessClosed(true, false);
+        assertEquals(true, r.isBusinessEssential());
+        assertEquals(true, r.isBusinessNonEssential());
+        r.setBusinessClosed(false, false);
+        assertEquals(true, r.isBusinessEssential());
         assertEquals(false, r.isBusinessNonEssential());
     }
 
-    // Tests whether the setter setBusinessNonEssential works correctly given it's parameters
+    // Tests whether the setter setMobility_Allow works correctly given it's parameters
     @Test
-    void testSetBusinessNonEssential() {
-        r.setBusinessNonEssential(false);
-        assertEquals(false, r.isBusinessNonEssential());
-        r.setBusinessNonEssential(true);
-        assertEquals(true, r.isBusinessNonEssential());
+    void testSetMobility_Allow() {
+        r.setMobility_Allow(true);
+        assertEquals(true, r.isMobility_Allowed());
+        r.setMobility_Allow(false);
+        assertEquals(false, r.isMobility_Allowed());
     }
 
     // Tests whether the setter setTimeRestriction works correctly given it's parameters
     @Test
     void testSetTimeRestriction() {
-        r.setTimeRestriction(0);
-        assertEquals(0, r.getTimeRestriction());
-        r.setTimeRestriction(12);
-        assertEquals(12, r.getTimeRestriction());
-        r.setTimeRestriction(24);
-        assertEquals(24, r.getTimeRestriction());
+        r.setTimeRestriction(2);
+        assertEquals(2, r.getTimeRestriction());
+        r.setTimeRestriction(4);
+        assertEquals(4, r.getTimeRestriction());
+        r.setTimeRestriction(8);
+        assertEquals(8, r.getTimeRestriction());
     }
 
+    // Expects an exception when upper bound is exceeded
     @Test(expected = RuntimeException.class)
-    void testSetTimeRestrictionUpperBound() {
-        r.setTimeRestriction(60);
+    void testSetTimeRestrictionExceedingUpperBound() {
+        r.setTimeRestriction(9);
     }
 
+
+    // Expects an exception when lower bound is exceeded
     @Test(expected = RuntimeException.class)
-    void testSetTimeRestrictionLowerBound() {
-        r.setTimeRestriction(-20);
+    void testSetTimeRestrictionExceedingLowerBound() {
+        r.setTimeRestriction(1);
     }
 }

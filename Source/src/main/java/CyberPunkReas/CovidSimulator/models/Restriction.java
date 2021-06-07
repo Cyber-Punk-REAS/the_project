@@ -38,6 +38,10 @@ public class Restriction {
         return businessNonEssentialClosed;
     }
 
+    public boolean isMobility_Allowed() {
+    	return mobility;
+    }
+
     public int getTimeRestriction() {
         return timeRestriction;
     }
@@ -45,15 +49,12 @@ public class Restriction {
     public void setCurfew(boolean curfew) {
         this.curfew = curfew;
     }
-    
+
     public void setMobility_Allow(boolean mobility) {
     	this.mobility=mobility;
     }
-    
-    public boolean isMobility_Allowed() {
-    	return mobility;
-    }
-    
+
+
     public void setBusinessClosed(boolean essentialClose, boolean nonessentialClose) {
     	this.businessEssentialClosed = essentialClose;
     	if(essentialClose) {
@@ -64,7 +65,7 @@ public class Restriction {
     }
 
     public void setTimeRestriction(int timeSpan) throws RuntimeException {
-    	if(timeSpan < 2 | timeSpan >= 8) {
+    	if(timeSpan < 2 | timeSpan > 8) {
     		throw new RuntimeException("Time Restriction parameter out of bounds");
     	}
     	this.timeRestriction = timeSpan;
