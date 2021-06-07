@@ -35,12 +35,12 @@ public class Person {
 		this.alive = true;
 	}
 	
-	public Person(Area area, int immunityChance, int unemployment, Business business){
+	public Person(Area area, ParameterProfile param, Business business){
 		this.id = Person._id_++;
 		this.area = area;
 		this.alive = true;
-		setStartingImmunity(immunityChance);
-		setWork(unemployment, Business business);
+		setStartingImmunity(param);
+		setWork(param, Business business);
 		setBusiness(business);
 	}
 
@@ -51,26 +51,26 @@ public class Person {
 			this.business = null;
 	}
 
-	public void setStartingImmunity(int immunityChance){
-		if(random.nextInt(100) < immunityChance)
+	public void setStartingImmunity(ParameterProfile param){
+		if(random.nextInt(100) < param.getImmunityChance())
 			startingImmunity = true;
 	}
 
-	public void setWork(int unemployment){
-		if(random.nextInt(100) > unemployment)
+	public void setWork(ParameterProfile param){
+		if(random.nextInt(100) > param.getUnemployment())
 			employed = true;
 	}
 
-	public void setFriends(double averageFriends, double friendsStandardDeviation, List<Person> people){
-		for(int i = 0; i < Person.rndFriends( averageFriends, friendsStandardDeviation); i++)
+	public void setFriends(ParameterProfile param, List<Person> people){
+		for(int i = 0; i < Person.rndFriends(param); i++)
 			friends[i] = people.get(random.nextInt(people.size()));
 	}
 
 
-	private static int rndFriends(double averageFriends, double friendsStandardDeviation){
+	private static int rndFriends(ParameterProfile param){
 		Random rnd = new Random();
 
-		return (int) ((rnd.nextGaussian() + averageFriends) * friendsStandardDeviation);    
+		return (int) ((rnd.nextGaussian() + param.getAverageFriends()) * param.getFriendsStandardDeviation());    
 	}
 
 	public ArrayList<Person> getPeopleCouldMeet() {
