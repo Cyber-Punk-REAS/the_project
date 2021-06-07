@@ -6,7 +6,7 @@ public class Restriction {
     private boolean businessEssentialClosed;
     private boolean businessNonEssentialClosed;
     private int timeRestriction;
-    private boolean mobility ;
+    private boolean mobility;
     
     public Restriction() {
         curfew = false;
@@ -64,20 +64,10 @@ public class Restriction {
     }
 
     public void setTimeRestriction(int timeSpan) throws RuntimeException {
-    	if(timeSpan < 0 | timeSpan > 24) {
+    	if(timeSpan < 2 | timeSpan >= 8) {
     		throw new RuntimeException("Time Restriction parameter out of bounds");
     	}
     	this.timeRestriction = timeSpan;
     }
-
-    /*public void setBusinessEssential(boolean businessEssential) {
-        this.businessEssential = businessEssential;
-        if(businessEssential = false) { this.businessNonEssential = false; }
-    }
-
-    public void setBusinessNonEssential(boolean businessNonEssential) {
-        this.businessNonEssential = businessNonEssential;
-    }
-*/
 
 }
