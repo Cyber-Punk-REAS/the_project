@@ -2,17 +2,14 @@ package CyberPunkReas.CovidSimulator.models;
 
 public class ParameterProfile {
 	private int averageFriends,
-				friendsStandardDeviation,
 				unemployment,
 				immunityChance,
 				executionTime,
 				initialInfectedPeople;
 	
-	public ParameterProfile(int averageFriends, int executionTime, int friendsStandardDeviation, 
-			int immunityChance, int initialInfectedPeople, int unemployment) {
+	public ParameterProfile(int averageFriends, int executionTime, int immunityChance, int initialInfectedPeople, int unemployment) {
 		this.averageFriends = averageFriends;
 		this.executionTime = executionTime;
-		this.friendsStandardDeviation = friendsStandardDeviation;
 		this.immunityChance = immunityChance;
 		this.initialInfectedPeople = initialInfectedPeople;
 		this.unemployment = unemployment;
@@ -23,7 +20,7 @@ public class ParameterProfile {
 	}
 
 	public int getFriendsStandardDeviation() {
-		return friendsStandardDeviation;
+		return averageFriends/3;
 	}
 
 	public int getUnemployment() {
@@ -42,12 +39,12 @@ public class ParameterProfile {
 		return initialInfectedPeople;
 	}
 
-	public void setAverageFriends(int averageFriends) {
-		this.averageFriends = averageFriends;
+	public int getDaysContagious(){
+		return (int) (random.nextGaussian() + this.averageDaysContagious) * 3;
 	}
 
-	public void setFriendsStandardDeviation(int friendsStandardDeviation) {
-		this.friendsStandardDeviation = friendsStandardDeviation;
+	public void setAverageFriends(int averageFriends) {
+		this.averageFriends = averageFriends;
 	}
 
 	public void setUnemployment(int unemployment) {
