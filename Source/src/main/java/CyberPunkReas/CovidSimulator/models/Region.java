@@ -39,6 +39,22 @@ public class Region {
 	public void addArea(Area area) {
 		areas.add(area);
 	}
+
+	public String getRegionName(){
+		return name;
+	}
+
+	public int getAreasNumber(){
+		return areasNumber;
+	}
+
+	public Area getAreabyIndex(int i){
+		return areas.get(i);
+	}
+
+	public List<Area> getAreasList(){
+		return areas;
+	}
 	
 
 }
