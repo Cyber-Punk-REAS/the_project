@@ -29,7 +29,7 @@ public class Restriction {
     }
 
     public void setTimeRestriction(int timeSpan) throws RuntimeException {
-        if (timeSpan < 2 | timeSpan >= 8) {
+        if (timeSpan < 0 || timeSpan >= 10) {
             throw new RuntimeException("Time Restriction parameter out of bounds");
         }
         this.timeRestriction = timeSpan;

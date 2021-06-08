@@ -15,7 +15,7 @@ public class Area {
     private int populationSize;
     private int size;
     private int numberOfBusiness;
-    @OneToOne
+    @ManyToOne
     private Restriction restrictionPolicy;
     @OneToMany()
     private List<Business> businesses;

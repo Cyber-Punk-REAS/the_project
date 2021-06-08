@@ -1,8 +1,7 @@
 package CyberPunkReas.CovidSimulator.controller;
 
-import CyberPunkReas.CovidSimulator.models.Result;
+import CyberPunkReas.CovidSimulator.models.*;
 import CyberPunkReas.CovidSimulator.service.Simulation;
-import CyberPunkReas.CovidSimulator.models.SimulationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,17 +25,34 @@ public class SimulationController {
         }
 
         SimulationDto dto = new SimulationDto();
-        dto.addAreas(areas.get());
+
+        ParameterProfile p = simulation.getDefaultParameterProfile();
+        Region region = simulation.getDefaultRegion(areas.get());
+
+        dto.setRegion(region);
+        dto.setParams(p);
+
         model.addAttribute("simulation", dto);
         return "simulation/new";
     }
 
     @PostMapping("/simulation/send")
-    public String send(SimulationDto simulation) {
+    public String send(SimulationDto dto, Model model) {
         // save here
-        System.out.println("number " + simulation.getRegion().getAreasNumber());
-        System.out.println("amount " + simulation.getRegion().getAreas().size());
-        System.out.println("infected " + simulation.getParams().getInitialInfectedPeople());
-        return "redirect:/simulation/new";
+        Result r = simulation.run(dto.getParams(), dto.getRegion());
+        model.addAttribute("result", r);
+        System.out.println(r.getTotalDeaths());
+        return "redirect:result";
+    }
+
+
+    @RequestMapping("/simulation/result")
+    public String resultView(Model model) {
+        // save here
+        Result r = simulation.run(simulation.getDefaultParameterProfile(), simulation.getDefaultRegion(5));
+        model.addAttribute("result", r);
+        System.out.println("Deaths " + r.getTotalDeaths());
+        System.out.println("Infected " + r.getTotalInfected());
+        return "simulation/result";
     }
 }

@@ -1,11 +1,10 @@
 package CyberPunkReas.CovidSimulator.models;
 
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import javax.persistence.*;
 
 @Entity
 public class Person {
@@ -22,12 +21,12 @@ public class Person {
 	private boolean alive;
 	private boolean employed;
 	private double contagiousness;
-  private double mortalityChance;
+	private double mortalityChance;
 
 	@ManyToOne
 	private Business business;
 	@ManyToMany
-	private List<Person> friends;
+	private List<Person> friends = new ArrayList<>();
 
 	public Person(Area area){
 		this.area = area;
@@ -79,23 +78,28 @@ public class Person {
 
 	public void setFriends(ParameterProfile param, List<Person> people){
 		for(int i = 0; i < Person.rndFriends(param); i++)
-			friends.set(i, people.get(random.nextInt(people.size())));
+			friends.add(people.get(random.nextInt(people.size())));
 	}
 
 	public void setContagiousness(ParameterProfile param) {
-		this.contagiousness = ((random.nextGaussian() + param.getAverageContagiousness()) * param.getContagiousnessStandardDeviation());
+		if (random.nextInt(100) < param.getInitialInfectedPeople()) {
+			this.contagiousness = ((random.nextGaussian() * param.getContagiousnessStandardDeviation() + param.getAverageContagiousness()));
+		} else {
+			this.contagiousness = 0;
+		}
 	}
 	
 	public void setMortalityChance(ParameterProfile param) {
-		this.mortalityChance = ((random.nextGaussian() + param.getMortalityRate()) * param.getMortalityStandardDeviation()); 
+		this.mortalityChance = ((random.nextGaussian() * param.getMortalityStandardDeviation() + param.getMortalityRate()));
 	}
 
 	public void setMaxContagiousDays(ParameterProfile param) {
-		this.maxContagiousDays = (int) ((random.nextGaussian() + param.getAverageContagiousDays()) * param.getContagiousDaysStandardDeviation());
+		this.maxContagiousDays = (int) ((random.nextGaussian() * param.getContagiousnessStandardDeviation() + param.getAverageContagiousDays()));
 	}
 
-	private static int rndFriends(ParameterProfile param){
-		return (int) ((random.nextGaussian() + param.getAverageFriends()) * param.getFriendsStandardDeviation());
+	public static int rndFriends(ParameterProfile param){
+		int friends = (int) ((random.nextGaussian() + 15));
+		return friends;
 	}
 
 	public List<Person> getPeopleCouldMeet() {
