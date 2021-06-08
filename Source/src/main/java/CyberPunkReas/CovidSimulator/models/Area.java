@@ -1,7 +1,10 @@
 package CyberPunkReas.CovidSimulator.models;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Entity
 public class Area {
@@ -28,8 +31,16 @@ public class Area {
 
     public Area() {
     }
-        
-    public int getPopulationSize() {
+    
+    public ParameterProfile getParam() {
+		return param;
+	}
+
+	public void setParam(ParameterProfile param) {
+		this.param = param;
+	}
+
+	public int getPopulationSize() {
 		return populationSize;
 	}
 
@@ -58,11 +69,14 @@ public class Area {
     }
     
     public void setPopulation() {
+    	Random rnd = new Random();
+    	population = new ArrayList<>();
     	for(int i = 0; i < populationSize; i++) {
-    		Person p = new Person(this, param, );
+    		Person p = new Person(this, param, businesses.get(rnd.nextInt(businesses.size())));
+    		population.add(p);
     	}
     	for(Person p : population) {
-    		
+    		p.setFriends(param, population);
     	}
     }
     
@@ -81,7 +95,17 @@ public class Area {
     public List<Business> getBusinesses() {
         return businesses;
     }
-
+    
+    public void setBusinesses() {
+    	businesses = new ArrayList<>();
+    	Random rnd = new Random();
+    	for(int i = 0; i < numberOfBusiness; i++) {
+    		boolean essential = (rnd.nextBoolean());
+    		Business b = new Business(i, essential, this);
+    		businesses.add(b);
+    	}
+    }
+    
     public void setBusinesses(List<Business> businesses) {
         this.businesses = businesses;
     }

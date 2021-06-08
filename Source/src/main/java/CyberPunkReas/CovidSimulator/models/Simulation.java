@@ -49,7 +49,9 @@ public class Simulation {
 						}
 					}
 					// Work spread section
-					if(person.getContagiousness() > 0 && person.isEmployed()) {
+					// FIXME "!person.getBusiness().getArea().getRestrictionPolicy().isBusinessEssentialClosed()" may be replaceable by "!area.getRestrictionPolicy().isBusinessEssentialClosed()"
+					if(person.getContagiousness() > 0 && person.isEmployed() && (!person.getBusiness().getArea().getRestrictionPolicy().isBusinessEssentialClosed() 
+							|| (!person.getBusiness().isEssential() && !person.getBusiness().getArea().getRestrictionPolicy().isBusinessNonEssentialClosed()))) {
 						Business business = person.getBusiness();
 						ArrayList<Person> coworkers = (ArrayList<Person>) business.getWorkers();
 						coworkers.remove(person); // FIXME this may not work because hashCode and equals not redefined
