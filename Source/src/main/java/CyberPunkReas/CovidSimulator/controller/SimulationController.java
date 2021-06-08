@@ -15,11 +15,10 @@ public class SimulationController {
     @RequestMapping("/simulation/new")
     public String newSimulationAreas(Model model, @RequestParam Optional<Integer> areas) {
         if(areas.isEmpty()) {
-
             return "simulation/selectAreas";
         }
+
         SimulationDto dto = new SimulationDto();
-        dto.setRegion(new Region());
         dto.addAreas(areas.get());
         model.addAttribute("simulation", dto);
         return "simulation/new";
@@ -30,6 +29,7 @@ public class SimulationController {
         // save here
         System.out.println("number " + simulation.getRegion().getAreasNumber());
         System.out.println("amount " + simulation.getRegion().getAreas().size());
+        System.out.println("infected " + simulation.getParams().getInitialInfectedPeople());
         return "redirect:/simulation/new";
     }
 }
