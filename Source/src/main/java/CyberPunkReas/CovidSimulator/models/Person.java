@@ -19,8 +19,10 @@ public class Person {
 	private static int _id_ = 0;
 	private Random random = new Random();
 	private int id;
+	private int contagiousDays;
+	private int maxContagiousDays;
 	private Area area;
-	private boolean startingImmunity;
+	private boolean immunity;
 	private boolean alive;
 	private boolean employed;
 	private Business business;
@@ -30,17 +32,19 @@ public class Person {
 	public Person(Area area){
 		this.id = Person._id_++;
 		this.area = area;
-		this.startingImmunity = false;
+		this.immunity = false;
 		this.employed = false;
 		this.alive = true;
+		contagiousDays = 0;
 	}
-	
+
 	public Person(Area area, ParameterProfile param, Business business){
 		this.id = Person._id_++;
 		this.area = area;
 		this.alive = true;
+		contagiousDays = 0;
 		setStartingImmunity(param);
-		setWork(param, Business business);
+		setWork(param);
 		setBusiness(business);
 	}
 
@@ -53,7 +57,12 @@ public class Person {
 
 	public void setStartingImmunity(ParameterProfile param){
 		if(random.nextInt(100) < param.getImmunityChance())
-			startingImmunity = true;
+			immunity = true;
+	}
+	
+	public void survived() {
+		immunity = true;
+		contagiousness = 0;
 	}
 
 	public void setWork(ParameterProfile param){
@@ -66,6 +75,13 @@ public class Person {
 			friends[i] = people.get(random.nextInt(people.size()));
 	}
 
+	public void setContagiousness(ParameterProfile param) {
+		this.contagiousness = ((random.nextGaussian() + param.getAverageContagiousness()) * param.getContagiousnessStandardDeviation()); 
+	}
+
+	public void setMaxContagiousDays(ParameterProfile param) {
+		this.maxContagiousDays = (int) ((random.nextGaussian() + param.getAverageContagiousDays()) * param.getContagiousDaysStandardDeviation());
+	}
 
 	private static int rndFriends(ParameterProfile param){
 		Random rnd = new Random();
@@ -86,8 +102,12 @@ public class Person {
 			}
 		}
 	}
-  
-  public int getId() {
+	
+	public void incrementContagiousDays() {
+		contagiousDays++;
+	}
+
+	public int getId() {
 		return id;
 	}
 
@@ -95,8 +115,16 @@ public class Person {
 		return area;
 	}
 
-	public boolean isStartingImmunity() {
-		return startingImmunity;
+	public int getContagiousDays() {
+		return contagiousDays;
+	}
+	
+	public int getMaxContagiousDays() {
+		return maxContagiousDays;
+	}
+	
+	public boolean isImmunity() {
+		return immunity;
 	}
 
 	public boolean isAlive() {
