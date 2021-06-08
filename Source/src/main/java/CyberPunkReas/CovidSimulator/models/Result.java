@@ -12,13 +12,15 @@ public class Result
     @Id
     @GeneratedValue
     private int id;
-    private int nDays;
+    private int totalInfected=0;
+    private int totalDeaths=0;
 
     // TODO: add parameter profile
     // private ParameterProfile pf;
 
     // can't save a list in a single field
     private String daysDeaths;
+    private String daysInfected;
 
     public Result() {
 
@@ -52,5 +54,59 @@ public class Result
             d.concat(String.valueOf(i));
         }
         this.daysDeaths = d;
+    }
+
+    public List<Integer> getDaysInfected() {
+        List<Integer> d = new ArrayList<Integer>();
+        int val= 0;
+
+        for(String field : this.daysInfected.split(",")) {
+            try {
+                val = Integer.parseInt(field);
+            }
+            // If the String contains other thing that digits and commas
+            catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+            d.add(val);
+        }
+
+        return d;
+    }
+
+    public void setDaysInfected(List<Integer> infected) {
+        String d = "";
+        for(int i : infected) {
+            d.concat(String.valueOf(i));
+        }
+        this.daysInfected = d;
+    }
+
+    public void setTotalInfected() {
+        int res=0;
+        for(String field : this.daysInfected.split(",")) {
+            try {
+                res += Integer.parseInt(field);
+
+            } 
+            catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+         }
+    totalInfected = res;
+    }
+
+    public void setTotalDeaths() {
+        int res=0;
+        for(String field : this.daysDeaths.split(",")) {
+            try {
+                res += Integer.parseInt(field);
+
+            } 
+            catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+         }
+    totalDeaths = res;
     }
 }
