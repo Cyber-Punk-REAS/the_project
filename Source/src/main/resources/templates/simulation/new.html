@@ -11,28 +11,131 @@
 <div class="container">
 
     <!--/*@thymesVar id="simulation" type="CyberPunkReas.CovidSimulator.models.SimulationDto"*/-->
-    <form action="#" method="post" th:action="@{/simulation/send}" th:object="${simulation}">
+    <form action="#" method="post" th:action="@{/simulation/send}" th:object="${simulation}" style="text-align:center" >
+    
+    
         <!--hidden fields-->
         <input hidden th:name="|region.areasNumber|" th:value="${simulation.region.areasNumber}">
-        <fieldset>
-            <legend>Simulation Parameters</legend>
-            <div class="form-group">
-                <label th:for="|params.initialInfectedPeople|">Initial infected people</label>
-                <input class="form-control" placeholder="Number of infected people..." th:name="|params.initialInfectedPeople|" type="number"/>
+        <fieldset >
+            <legend class="display-4 " style="text-decoration : underline"> Simulation Parameters </legend>
+            
+            <div class="border border-dark">
+            
+             <div class="form-group row ">
+                <label th:for="|params.initialInfectedPeople|" class="col-sm-6 col-form-label col-form-label-sm">Initial infected people</label>
+                     <div class="col-sm-auto">
+                <input class="form-control" placeholder="Number of infected people..." th:name="|params.initialInfectedPeople|" type="number" min="0"/>
             </div>
+            </div>
+            
+            
+            <!-- Average Contagious Day-->
+                
+            <div class="form-group row">
+                <label th:for="|params.AverageContagiousDays|" class="col-sm-6 col-form-label col-form-label-sm"> Average Contagious Day</label>
+                      <div class="col-sm-auto">
+                <input class="form-control" placeholder="Contagious Day..." th:name="|params.AverageContagiousDays|" type="number" min="0"/>
+            </div>
+                  </div>
+<!-- Average Day Contagious -->                  
+                  
+                              <div class="form-group row">
+                <label th:for="|params.AverageDaysContagious|" class="col-sm-6 col-form-label col-form-label-sm"> Average Day Contagious </label>
+                      <div class="col-sm-auto">
+                <input class="form-control" placeholder="Day Contagious " th:name="|params.AverageDaysContagious|" type="number" min="0"/>
+            </div>
+                  </div>
+                  
+                  
+                  
+ <!-- Average Contagiousness-->
+                
+            <div class="form-group row">
+                <label th:for="|params.AverageContagiousness|" class="col-sm-6 col-form-label col-form-label-sm"> Average Contagiousness </label>
+                      <div class="col-sm-auto">
+                <input class="form-control" placeholder="Contagiousness " th:name="|params.AverageContagiousness|" type="number" min="0"/>
+            </div>
+                  </div>
+                  
+<!-- Average Friend -->
+                
+            <div class="form-group row">
+                <label th:for="|params.AverageFriends|" class="col-sm-6 col-form-label col-form-label-sm"> Average Friends </label>
+                      <div class="col-sm-auto">
+                <input class="form-control" placeholder="Average Friend" th:name="|params.AverageFriends|" type="number" min="0"/>
+            </div>
+                  </div>
+                  
+<!-- Immunity Chance -->                  
+                         
+            <div class="form-group row">
+                <label th:for="|params.ImmunityChance|" class="col-sm-6 col-form-label col-form-label-sm"> Immunity Chance </label>
+                      <div class="col-sm-auto">
+                <input class="form-control" placeholder="Immunity Chance" th:name="|params.ImmunityChance|" type="number" min="0"/>
+            </div>
+                  </div>
+<!-- Execution Time -->                  
+                   <div class="form-group row">
+                <label th:for="|params.ExecutionTime|" class="col-sm-6 col-form-label col-form-label-sm"> Execution Time </label>
+                      <div class="col-sm-auto">
+                <input class="form-control" placeholder="Execution Time" th:name="|params.ExecutionTime|" type="number" min="0"/>
+            </div>
+                  </div>
+<!-- UnEmployement -->                  
+                            <div class="form-group row">
+                <label th:for="|params.Unemployment|" class="col-sm-6 col-form-label col-form-label-sm"> UnEmployement </label>
+                      <div class="col-sm-auto">
+                <input class="form-control" placeholder="Unemployment" th:name="|params.Unemployment|" type="number" min="0"/>
+            </div>
+                  </div>
+                  
+                  
+            
+            </div>
+           
+            
         </fieldset>
-        <fieldset>
-            <legend>Areas</legend>
-            <div th:each="area, itemStat : ${simulation.region.areas}">
+        
+        <fieldset >
+        
+            <legend class="display-4  " style="text-decoration : underline">Areas</legend>
+            <div th:each="area, itemStat : ${simulation.region.areas}" class="border border-dark">
                 <!--/*@thymesVar id="area" type="CyberPunkReas.CovidSimulator.models.Area"*/-->
-                <div class="form-group">
+                <div class="form-group row" >
                     <legend th:text="${'Area ' + (itemStat.index + 1)}"></legend>
-                    <label th:for="|region.areas[${itemStat.index}].name|">Name</label>
-                    <input class="form-control" placeholder="Area name" th:name="|region.areas[${itemStat.index}].name|" type="text"/>
-                </div>
+<!-- Name -->                                   
+                    <label th:for="|region.areas[${itemStat.index}].name|" class="col-sm-6 col-form-label col-form-label-sm">Name</label>
+                     <div class="col-sm-auto">
+                    <input class="form-control form-control-sm" id="colFormLabelSm" placeholder="Area name" th:name="|region.areas[${itemStat.index}].name|" type="text"/>
+                 </div>
+               
+  				</div>	
+ <!-- Average Population Size-->
+                
+            <div class="form-group row">
+                <label th:for="|params.PopulationSize|" class="col-sm-6 col-form-label col-form-label-sm"> Population Size</label>
+                      <div class="col-sm-auto">
+                <input class="form-control" placeholder="Population Size..." th:name="|params.PopulationSize|" type="number" min="0"/>
             </div>
+                  </div>
+ <!-- Average Number of Business -->
+                
+            <div class="form-group row">
+                <label th:for="|params.numberOfBusiness|" class="col-sm-6 col-form-label col-form-label-sm"> Number of Business</label>
+                      <div class="col-sm-auto">
+                <input class="form-control" placeholder="Number of Business..." th:name="|params.numberOfBusiness|" type="number" min="0"/>
+            </div>
+                  </div>                  
+  				
+  
+                                    
+                  
+            </div> 
         </fieldset>
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+         <button type="submit" class="btn btn-primary" >Submit</button>
+ 
+       
     </form>
 </div>
 

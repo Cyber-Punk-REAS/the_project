@@ -30,6 +30,15 @@ public class SimulationController {
         System.out.println("number " + simulation.getRegion().getAreasNumber());
         System.out.println("amount " + simulation.getRegion().getAreas().size());
         System.out.println("infected " + simulation.getParams().getInitialInfectedPeople());
+        System.out.println("Contagious Day " + simulation.getParams().getAverageContagiousDays());
+        System.out.println("Day Contagious " + simulation.getParams().getAverageDaysContagious());
+        System.out.println("Average contagiousness " + simulation.getParams().getAverageContagiousness());
+        System.out.println("Average Friends " + simulation.getParams().getAverageFriends());
+        System.out.println("Immunity Chance " + simulation.getParams().getImmunityChance());
+        System.out.println("Execution Time " + simulation.getParams().getExecutionTime());
+        System.out.println("unemployement " + simulation.getParams().getUnemployment());
+        
+        
         return "redirect:/simulation/new";
     }
 }
