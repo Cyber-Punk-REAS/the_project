@@ -115,10 +115,10 @@ public class Simulation {
         Region region = new Region();
         region.setName("Spain");
         region.setAreasNumber(areas);
-        for (int i = 0; i < areas; i ++) {
+        for (int i = 1; i <= areas; i ++) {
             Area a = new Area();
             a.setName("Area " + i);
-            a.setSize(1000);
+            a.setSize(100);
             a.setPopulationSize(1000);
             a.setNumberOfBusiness(10);
             var rp = new Restriction();

@@ -4,22 +4,25 @@
     <meta charset="UTF-8">
     <title>Select number of areas</title>
 
-    <link href = "webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel = "stylesheet">
-    <link href = "style.css" rel = "stylesheet">
+    <link href="../webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../simulation.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Simulation</h1>
-    <form method="get" action="#" th:action="@{/simulation/new}">
-        <label for="areas">Number of areas</label>
-        <input type="number" id="areas" placeholder="Number of areas" name="areas">
-        <input type="submit" value="Continue">
-    </form>
-    <!--/*@thymesVar id="parameters" type="CyberPunkReas.CovidSimulator.models.ParameterProfile"*/-->
-<!--    <form action="#" th:action="@{/simulation/run}" th:object="${parameters}" method="post">-->
-<!--        <label for="executionTime">Execution Time</label>-->
-<!--        <input type="text" th:field="*{executionTime}" id="executionTime" placeholder="Execution Time">-->
-<!--        <span th:if="${#fields.hasErrors('executionTime')}" th:errors="*{executionTime}"></span>-->
-<!--        <input type="submit" value="Run Simulation">-->
-<!--    </form>-->
+    <h1>How many areas will the region have?</h1>
+    <h4>A region is made up of different areas</h4>
+    <div class="container">
+
+        <form method="get" action="#" th:action="@{/simulation/new}">
+        <div class="form-group" x-data="{ fileName: '' }">
+            <div class="input-group shadow">
+                <input type="number" class="form-control form-control-lg"  id="areas" placeholder="Number of areas" name="areas">
+                <button class="browse btn btn-primary px-4" type="submit"><i class="fas fa-image"></i> Continue</button>
+            </div>
+        </div>
+        </form>
+    </div>
+    <div class="text-center copyright">
+        <span>© 2021 CyberPunkReas, Inc. Making covid simulators since 2020</span>
+    </div>
 </body>
 </html>

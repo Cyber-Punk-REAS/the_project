@@ -22,15 +22,6 @@ public class Area {
     @OneToMany
     private List<Person> population;
 
-
-    public Area(Restriction restrictionPolicy, String name) {
-        this.name = name;
-        setRestrictionPolicy(restrictionPolicy);
-    }
-
-    public Area() {
-    }
-
 	public int getPopulationSize() {
 		return populationSize;
 	}

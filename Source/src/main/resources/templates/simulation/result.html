@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>CovidSimulator</title>
+
+    <link href="../webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../simulation.css" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-light">
+    <a class="Menu" href='/'>Covid Simulator</a>
+</nav>
+
+<!--/*@thymesVar id="result" type="CyberPunkReas.CovidSimulator.models.Result"*/-->
+<h1>Simulation results</h1>
+<h4 class="mb-3">Total time elapsed: <span th:text="${result.daysDeaths.size()}"></span> days</h4>
+<h4 class="mb-3">Number of infections: <span th:text="${result.totalInfected}"></span></h4>
+<h4>Number of deaths: <span th:text="${result.totalDeaths}"></span></h4>
+<div class="container">
+    <section class="list">
+        <div class="container">
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Day</th>
+                    <th scope="col">Deaths</th>
+                    <th scope="col">Infections</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dd, itemStat : ${result.daysDeaths}">
+                    <th th:text="${(itemStat.index + 1)}"></th>
+                    <td th:text="${dd}"></td>
+                    <td th:text="${result.daysInfections.get(itemStat.index)}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="text-center">
+        <a type="button" class="btn btn-primary" href="/simulation/new">Again</a>
+    </div>
+</div>
+
+</body>
+
+</html>
