@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 @Entity
 public class Result
@@ -12,14 +13,14 @@ public class Result
     @Id
     @GeneratedValue
     private int id;
-    private int totalInfected=0;
-    private int totalDeaths=0;
+    private int totalInfected;
+    private int totalDeaths;
 
     // TODO: add parameter profile
     // private ParameterProfile pf;
 
     // can't save a list in a single field
-    private String daysInfected;
+    private String daysInfections;
     private String daysDeaths;
 
     public Result() {
@@ -58,18 +59,19 @@ public class Result
     }
 
     public void setDaysDeaths(List<Integer> deaths) {
-        String d = "";
+        StringJoiner sj = new StringJoiner(",");
         for(int i : deaths) {
-            d.concat(String.valueOf(i));
+            sj.add(String.valueOf(i));
+            totalDeaths += i;
         }
-        this.daysDeaths = d;
+        this.daysDeaths = sj.toString();
     }
 
-    public List<Integer> getDaysInfected() {
+    public List<Integer> getDaysInfections() {
         List<Integer> d = new ArrayList<Integer>();
         int val= 0;
 
-        for(String field : this.daysInfected.split(",")) {
+        for(String field : this.daysInfections.split(",")) {
             try {
                 val = Integer.parseInt(field);
             }
@@ -84,39 +86,12 @@ public class Result
     }
 
     public void setDaysInfections(List<Integer> infected) {
-        String d = "";
+        StringJoiner sj = new StringJoiner(",");
         for(int i : infected) {
-            d.concat(String.valueOf(i));
+            sj.add(String.valueOf(i));
+            totalInfected += i;
         }
-        this.daysInfected = d;
-    }
-
-    public void setTotalInfected() {
-        int res=0;
-        for(String field : this.daysInfected.split(",")) {
-            try {
-                res += Integer.parseInt(field);
-
-            } 
-            catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-        }
-        totalInfected = res;
-    }
-
-    public void setTotalDeaths() {
-        int res=0;
-        for(String field : this.daysDeaths.split(",")) {
-            try {
-                res += Integer.parseInt(field);
-
-            } 
-            catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-        }
-        totalDeaths = res;
+        this.daysInfections = sj.toString();
     }
 
     public void setTotalDeaths(int deaths){

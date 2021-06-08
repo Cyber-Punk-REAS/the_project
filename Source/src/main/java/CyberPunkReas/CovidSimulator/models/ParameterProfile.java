@@ -15,7 +15,6 @@ public class ParameterProfile {
 
 	private int averageContagiousDays;
 	private int averageContagiousness;
-	private int averageDaysContagious;
 	private int averageFriends;
 	private int unemployment;
 	private int immunityChance;
@@ -73,14 +72,6 @@ public class ParameterProfile {
 		return mortalityRate;
 	}
 
-	public int getAverageDaysContagious() {
-		return averageDaysContagious;
-	}
-
-	public void setAverageDaysContagious(int averageDaysContagious) {
-		this.averageDaysContagious = averageDaysContagious;
-	}
-
 	public int getAverageContagiousness() {
 		return averageContagiousness;
 	}
@@ -115,9 +106,5 @@ public class ParameterProfile {
 
 	public int getFriendsStandardDeviation() {
 		return averageFriends/3; // Greater the number of friends, greater the standard deviation
-	}
-
-	public int getDaysContagious(){
-		return (int) (random.nextGaussian() + this.averageDaysContagious) * 3;
 	}
 }

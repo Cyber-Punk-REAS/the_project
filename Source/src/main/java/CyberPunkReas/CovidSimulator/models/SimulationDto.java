@@ -6,8 +6,6 @@ public class SimulationDto {
     private ParameterProfile params;
 
     public SimulationDto() {
-        region = new Region();
-        params = new ParameterProfile();
     }
 
     public Region getRegion() {

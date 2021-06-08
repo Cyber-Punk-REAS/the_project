@@ -1,5 +1,6 @@
 package CyberPunkReas.CovidSimulator.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ public class Business {
 	private boolean essential;
 	
 	@OneToMany
-	private List<Person> workers;
+	private List<Person> workers = new ArrayList<>();
 	
 	@ManyToOne
 	private Area area;
@@ -29,7 +30,6 @@ public class Business {
 	}
 
 	public Business() {
-
 	}
 
 	public Area getArea() {
