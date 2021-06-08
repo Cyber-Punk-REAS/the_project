@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>CovidSimulator</title>
+	
+	<link href = "webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel = "stylesheet">
+    <link href = "style.css" rel = "stylesheet">
+</head>
+
+<body>
+	<nav class="navbar navbar-light">
+		<a class="Menu" href='#'>Covid Simulator</a>
+	</nav>
+	
+	<section class = "total">
+		<div class = "container">
+			<label>Number of infections</label>
+			<label>Number of deaths</label>
+		</div>
+	</section>
+	
+	<section class = "list">
+		<div class = "container">
+			<table class = "table">
+				<thead class = "thead-light">
+					<tr>
+						<td>Day</td>
+						<td>Infections</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="r : ${}">
+						<td th:text = "${}"></td>
+						<td th:text = "${}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+	
+	<div class = "container">
+		<input type = "submit" class = "save-button-cta" value = "Save">
+	</div>
+	
+</body>
+
+</html>
