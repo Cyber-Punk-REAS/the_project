@@ -40,7 +40,7 @@ public class Person {
 		this.area = area;
 		this.alive = true;
 		setStartingImmunity(param);
-		setWork(param, Business business);
+		setWork(param, business);
 		setBusiness(business);
 	}
 
