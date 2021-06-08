@@ -3,7 +3,9 @@ package CyberPunkReas.CovidSimulator.models;
 import java.util.Random;
 
 public class ParameterProfile {
-	private int averageDaysContagious,
+	private int averageContagiousDays,
+				averageContagiousness,
+				averageDaysContagious,
 				averageFriends,
 				unemployment,
 				immunityChance,
@@ -11,7 +13,9 @@ public class ParameterProfile {
 				initialInfectedPeople;
 	private Random random = new Random();
 	
-	public ParameterProfile(int averageDaysContagious, int averageFriends, int executionTime, int immunityChance, int initialInfectedPeople, int unemployment) {
+	public ParameterProfile(int averageContagiousDays, int averageContagiousness, int averageDaysContagious, int averageFriends, int executionTime, int immunityChance, int initialInfectedPeople, int unemployment) {
+		this.averageContagiousDays = averageContagiousDays;
+		this.averageContagiousness = averageContagiousness;
 		this.averageDaysContagious = averageDaysContagious;
 		this.averageFriends = averageFriends;
 		this.executionTime = executionTime;
@@ -20,12 +24,28 @@ public class ParameterProfile {
 		this.unemployment = unemployment;
 	}
 	
+	public int getAverageContagiousDays() {
+		return averageContagiousDays;
+	}
+	
+	public int getAverageContagiousness() {
+		return averageContagiousness;
+	}
+	
 	public int getAverageFriends() {
 		return averageFriends;
 	}
+	
+	public double getContagiousDaysStandardDeviation() {
+		return averageContagiousDays/4; // Greater the number of contagious days, greater the standard deviation
+	}
+
+	public double getContagiousnessStandardDeviation() {
+		return averageContagiousness/5; // Greater the contagiousness, greater the standard deviation
+	}
 
 	public int getFriendsStandardDeviation() {
-		return averageFriends/3;
+		return averageFriends/3; // Greater the number of friends, greater the standard deviation
 	}
 
 	public int getUnemployment() {
@@ -47,7 +67,11 @@ public class ParameterProfile {
 	public int getDaysContagious(){
 		return (int) (random.nextGaussian() + this.averageDaysContagious) * 3;
 	}
-
+	
+	public void setAverageContagiousDays(int averageContagiousDays) {
+		this.averageContagiousDays = averageContagiousDays;
+	}
+	
 	public void setAverageFriends(int averageFriends) {
 		this.averageFriends = averageFriends;
 	}
@@ -67,6 +91,8 @@ public class ParameterProfile {
 	public void setInitialInfectedPeople(int initialInfectedPeople) {
 		this.initialInfectedPeople = initialInfectedPeople;
 	}
+
+
 	
 	
 }
