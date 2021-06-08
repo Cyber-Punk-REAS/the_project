@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../webjars/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <!--/*@thymesVar id="simulation" type="CyberPunkReas.CovidSimulator.models.SimulationDto"*/-->
+    <form action="#" method="post" th:action="@{/simulation/send}" th:object="${simulation}">
+        <!--hidden fields-->
+        <input hidden th:name="|region.areasNumber|" th:value="${simulation.region.areasNumber}">
+        <fieldset>
+            <legend>Simulation Parameters</legend>
+            <div class="form-group">
+                <label th:for="|params.initialInfectedPeople|">Initial infected people</label>
+                <input class="form-control" placeholder="Number of infected people..." th:name="|params.initialInfectedPeople|" type="number"/>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Areas</legend>
+            <div th:each="area, itemStat : ${simulation.region.areas}">
+                <!--/*@thymesVar id="area" type="CyberPunkReas.CovidSimulator.models.Area"*/-->
+                <div class="form-group">
+                    <legend th:text="${'Area ' + (itemStat.index + 1)}"></legend>
+                    <label th:for="|region.areas[${itemStat.index}].name|">Name</label>
+                    <input class="form-control" placeholder="Area name" th:name="|region.areas[${itemStat.index}].name|" type="text"/>
+                </div>
+            </div>
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
