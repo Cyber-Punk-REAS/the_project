@@ -8,8 +8,9 @@ import java.util.Random;
 
 @Entity
 public class ParameterProfile {
-	@Id
-    @GeneratedValue
+  private static final int MORTALITY_RATE = 2; // 2% mortality rate
+  @Id
+  @GeneratedValue
 	private int id;
 
 	private int averageContagiousDays;
@@ -20,6 +21,7 @@ public class ParameterProfile {
 	private int immunityChance;
 	private int executionTime;
 	private int initialInfectedPeople;
+  private int mortalityRate = MORTALITY_RATE,
 
 	private static Random random = new Random();
 
@@ -46,6 +48,10 @@ public class ParameterProfile {
 	public void setImmunityChance(int immunityChance) {
 		this.immunityChance = immunityChance;
 	}
+	
+	public double getMortalityStandardDeviation() {
+		return mortalityRate/3; // Greater the number of friends, greater the standard deviation
+	}
 
 	public int getUnemployment() {
 		return unemployment;
@@ -61,6 +67,10 @@ public class ParameterProfile {
 
 	public void setAverageFriends(int averageFriends) {
 		this.averageFriends = averageFriends;
+	}
+	
+	public int getMortalityRate() {
+		return mortalityRate;
 	}
 
 	public int getAverageDaysContagious() {
@@ -94,9 +104,11 @@ public class ParameterProfile {
 	public void setId(int id) {
 		this.id = id;
 	}
+  
 	public double getContagiousDaysStandardDeviation() {
 		return averageContagiousDays/4; // Greater the number of contagious days, greater the standard deviation
 	}
+  
 	public double getContagiousnessStandardDeviation() {
 		return averageContagiousness/5; // Greater the contagiousness, greater the standard deviation
 	}

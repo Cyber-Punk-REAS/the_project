@@ -58,7 +58,7 @@ public class Simulation {
 							int coworkersMetToday = maxCoworkersMetToday * (1 - business.getArea().getRestrictionPolicy().getTimeRestriction()/10);
 							for(int j = 0; j < coworkersMetToday; j++) {
 								Person coworkerInQuestion = coworkers.get(j + rnd.nextInt(maxCoworkersMetToday - coworkersMetToday));
-								if(rnd.nextInt(100) < person.getContagiousness() && coworkerInQuestion.getContagiousness() == 0 && !coworkerInQuestion.isImmunity()) {
+								if(rnd.nextInt(100) < person.getContagiousness() && coworkerInQuestion.getContagiousness() == 0 && !coworkerInQuestion.isImmunity() && coworkerInQuestion.isAlive()) {
 									coworkerInQuestion.setContagiousness(param);
 									System.out.println(person.getId()+" >W> "+coworkerInQuestion.getId()); //TODO, show in web interface NOT MANDATORY FOR DEMO
 								}
@@ -71,8 +71,14 @@ public class Simulation {
 					if(person.getContagiousness() > 0) {
 						person.incrementContagiousDays();
 						if(person.getContagiousDays() > person.getMaxContagiousDays()) {
-							person.survived();
-							System.out.println("|||"+person.getId()+"|||"); //TODO, show in web interface NOT MANDATORY FOR DEMO
+							if(rnd.nextDouble()*100 < person.getMortalityChance()) {
+								person.died();
+								System.out.println("xxx"+person.getId()+"xxx"); //TODO, show in web interface NOT MANDATORY FOR DEMO
+							}
+							else {
+								person.survived();
+								System.out.println("|||"+person.getId()+"|||"); //TODO, show in web interface NOT MANDATORY FOR DEMO								
+							}
 						}
 						infectedPerDay[i]++;
 					}
@@ -82,6 +88,7 @@ public class Simulation {
 		}
 		
 		//IT RETURNS A LIST OF INFECTED PEOPLE PER DAY
+		return new Result(infectedPerDay, deadTotal);
 	}
 
 	public ParameterProfile getParam() {
