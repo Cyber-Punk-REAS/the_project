@@ -1,13 +1,18 @@
 package CyberPunkReas.CovidSimulator.models;
 
+import java.util.Random;
+
 public class ParameterProfile {
-	private int averageFriends,
+	private int averageDaysContagious,
+				averageFriends,
 				unemployment,
 				immunityChance,
 				executionTime,
 				initialInfectedPeople;
+	private Random random = new Random();
 	
-	public ParameterProfile(int averageFriends, int executionTime, int immunityChance, int initialInfectedPeople, int unemployment) {
+	public ParameterProfile(int averageDaysContagious, int averageFriends, int executionTime, int immunityChance, int initialInfectedPeople, int unemployment) {
+		this.averageDaysContagious = averageDaysContagious;
 		this.averageFriends = averageFriends;
 		this.executionTime = executionTime;
 		this.immunityChance = immunityChance;
