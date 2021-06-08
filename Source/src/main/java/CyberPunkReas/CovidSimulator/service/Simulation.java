@@ -21,6 +21,9 @@ public class Simulation {
             int infected = 0;
             int dead = 0;
             for (Area area : region.getAreas()) {
+                // Initialize population and business
+                area.setBusinesses();
+                area.setPopulation(params);
                 // Person spread loop
                 for (Person person : area.getPopulation()) {
                     // Friends spread section
