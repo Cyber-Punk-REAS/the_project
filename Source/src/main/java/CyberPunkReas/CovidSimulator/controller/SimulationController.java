@@ -1,6 +1,7 @@
 package CyberPunkReas.CovidSimulator.controller;
 
-import CyberPunkReas.CovidSimulator.models.Region;
+import CyberPunkReas.CovidSimulator.models.Result;
+import CyberPunkReas.CovidSimulator.service.Simulation;
 import CyberPunkReas.CovidSimulator.models.SimulationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,12 @@ import java.util.Optional;
 
 @Controller
 public class SimulationController {
+    private final Simulation simulation;
+
+    public SimulationController(Simulation simulation) {
+        this.simulation = simulation;
+    }
+
     @RequestMapping("/simulation/new")
     public String newSimulationAreas(Model model, @RequestParam Optional<Integer> areas) {
         if(areas.isEmpty()) {
