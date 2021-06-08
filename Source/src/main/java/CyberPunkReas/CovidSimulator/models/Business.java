@@ -21,7 +21,7 @@ public class Business {
 	@ManyToOne
 	private Area area;
 	
-	public Business(Integer id, boolean esential, Area area)
+	public Business(Integer id, boolean essential, Area area)
 	{
 		this.id = id;
 		this.essential = essential;
