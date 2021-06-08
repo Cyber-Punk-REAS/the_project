@@ -1,0 +1,17 @@
+﻿Project Plan
+April 11th, 2021
+
+SOFTWARE PROCESS
+We have decided to use SCRUM for its flexibility and because it is very efficient for projects with high uncertainty, like ours. The biggest point for choosing SCRUM is the self-organization and autonomy that it promotes on the team members.
+
+SCRUM MEETINGS
+Given the extraordinary uncertainty that we find ourselves in we decided that, rather than deciding from the start the frequency for the SCRUM meetings, we will decide that frequency in the Sprint meetings. This way if we notice that for a given Sprint we need more meetings than usual we can adapt faster and more efficiently, and when we don’t need as many we can reduce them to save time.
+
+SUB-TASK DISTRIBUTION
+First off, to ensure that no task is kept undone, all people responsible for a given role are held accountable for the completion of every task related to that role. And then everyone is free to join any other task that they think they could help to complete. And in case that some tasks require more people than the already assigned, the people developing this task can ask for help from other team members.
+We think this is the best approach given that we don’t know the strengths and interests of all the team members. This way, we can ensure that most tasks are performed by a highly motivated team, which should improve efficiency.
+Most tasks can and will be divided into sub-tasks that will be distributed amongst the people involved in the given task. In order to decide this distribution of tasks, we thought that the people responsible for that task will be the ones to determine it. Thus providing more structure to the task distribution. 
+
+TOOLS AND RESOURCES
+In this field, we have chosen a minimalist approach. Given the uncertainty this project entails we cannot determine the time needed to complete almost any task, thus the use of Teamgantt and similar power-ups in Trello has been dismissed. For the task distribution and control, we will use only Trello in its “vanilla” version, using only one Sprint Board. This Board will be updated with a new column for each new Sprint. In this way, we can keep a backlog always visible of all tasks completed for all Sprints (this will serve as our “Burndown chart”) and all current tasks at the same time.
+For communication and meetings, we will mostly use Discord. And we will use Git and Github for version control.
