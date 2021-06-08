@@ -13,18 +13,41 @@ public class Person {
 	@GeneratedValue
 	private int id;
 
-	private Random random = new Random();
+	private static Random random = new Random();
+	private int contagiousDays;
+	private int maxContagiousDays;
 	@ManyToOne
 	private Area area;
-	private boolean startingImmunity;
+	private boolean immunity;
 	private boolean alive;
 	private boolean employed;
-
 	private double contagiousness;
 	@ManyToOne
 	private Business business;
 	@ManyToMany
 	private List<Person> friends;
+
+	public Person(Area area){
+		this.area = area;
+		this.immunity = false;
+		this.employed = false;
+		this.alive = true;
+		contagiousDays = 0;
+	}
+
+	public Person(Area area, ParameterProfile param, Business business){
+		this.area = area;
+		this.alive = true;
+		contagiousDays = 0;
+		setStartingImmunity(param);
+		setWork(param);
+		setBusiness(business);
+	}
+
+	public Person() {
+
+	}
+
 
 	public void setBusiness(Business business){
 		if(employed)
@@ -35,7 +58,12 @@ public class Person {
 
 	public void setStartingImmunity(ParameterProfile param){
 		if(random.nextInt(100) < param.getImmunityChance())
-			startingImmunity = true;
+			immunity = true;
+	}
+
+	public void survived() {
+		immunity = true;
+		contagiousness = 0;
 	}
 
 	public void setWork(ParameterProfile param){
@@ -48,11 +76,16 @@ public class Person {
 			friends.set(i, people.get(random.nextInt(people.size())));
 	}
 
+	public void setContagiousness(ParameterProfile param) {
+		this.contagiousness = ((random.nextGaussian() + param.getAverageContagiousness()) * param.getContagiousnessStandardDeviation());
+	}
+
+	public void setMaxContagiousDays(ParameterProfile param) {
+		this.maxContagiousDays = (int) ((random.nextGaussian() + param.getAverageContagiousDays()) * param.getContagiousDaysStandardDeviation());
+	}
 
 	private static int rndFriends(ParameterProfile param){
-		Random rnd = new Random();
-
-		return (int) ((rnd.nextGaussian() + param.getAverageFriends()) * param.getFriendsStandardDeviation());
+		return (int) ((random.nextGaussian() + param.getAverageFriends()) * param.getFriendsStandardDeviation());
 	}
 
 	public List<Person> getPeopleCouldMeet() {
@@ -69,8 +102,12 @@ public class Person {
 		}
 		return peopleCouldMeet;
 	}
-  
-  public int getId() {
+
+	public void incrementContagiousDays() {
+		contagiousDays++;
+	}
+
+	public int getId() {
 		return id;
 	}
 
@@ -78,8 +115,16 @@ public class Person {
 		return area;
 	}
 
-	public boolean isStartingImmunity() {
-		return startingImmunity;
+	public int getContagiousDays() {
+		return contagiousDays;
+	}
+
+	public int getMaxContagiousDays() {
+		return maxContagiousDays;
+	}
+
+	public boolean isImmunity() {
+		return immunity;
 	}
 
 	public boolean isAlive() {
@@ -100,13 +145,5 @@ public class Person {
 
 	public List<Person> getFriends() {
 		return friends;
-	}
-
-	public void setContagiousness(double contagiousness) {
-		this.contagiousness = contagiousness;
-	}
-
-	public void setFriends(List<Person> friends) {
-		this.friends = friends;
 	}
 }
