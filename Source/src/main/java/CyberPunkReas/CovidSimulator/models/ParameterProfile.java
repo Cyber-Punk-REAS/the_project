@@ -1,45 +1,102 @@
 package CyberPunkReas.CovidSimulator.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import java.util.Random;
 
+@Entity
 public class ParameterProfile {
-	private int averageContagiousDays,
-				averageContagiousness,
-				averageDaysContagious,
-				averageFriends,
-				unemployment,
-				immunityChance,
-				executionTime,
-				initialInfectedPeople;
-	private Random random = new Random();
-	
-	public ParameterProfile(int averageContagiousDays, int averageContagiousness, int averageDaysContagious, int averageFriends, int executionTime, int immunityChance, int initialInfectedPeople, int unemployment) {
-		this.averageContagiousDays = averageContagiousDays;
-		this.averageContagiousness = averageContagiousness;
-		this.averageDaysContagious = averageDaysContagious;
-		this.averageFriends = averageFriends;
+	@Id
+    @GeneratedValue
+	private int id;
+
+	private int averageContagiousDays;
+	private int averageContagiousness;
+	private int averageDaysContagious;
+	private int averageFriends;
+	private int unemployment;
+	private int immunityChance;
+	private int executionTime;
+	private int initialInfectedPeople;
+
+	private static Random random = new Random();
+
+	public int getExecutionTime() {
+		return executionTime;
+	}
+
+	public void setExecutionTime(int executionTime) {
 		this.executionTime = executionTime;
-		this.immunityChance = immunityChance;
+	}
+
+	public int getInitialInfectedPeople() {
+		return initialInfectedPeople;
+	}
+
+	public void setInitialInfectedPeople(int initialInfectedPeople) {
 		this.initialInfectedPeople = initialInfectedPeople;
+	}
+
+	public int getImmunityChance() {
+		return immunityChance;
+	}
+
+	public void setImmunityChance(int immunityChance) {
+		this.immunityChance = immunityChance;
+	}
+
+	public int getUnemployment() {
+		return unemployment;
+	}
+
+	public void setUnemployment(int unemployment) {
 		this.unemployment = unemployment;
 	}
-	
-	public int getAverageContagiousDays() {
-		return averageContagiousDays;
-	}
-	
-	public int getAverageContagiousness() {
-		return averageContagiousness;
-	}
-	
+
 	public int getAverageFriends() {
 		return averageFriends;
 	}
-	
+
+	public void setAverageFriends(int averageFriends) {
+		this.averageFriends = averageFriends;
+	}
+
+	public int getAverageDaysContagious() {
+		return averageDaysContagious;
+	}
+
+	public void setAverageDaysContagious(int averageDaysContagious) {
+		this.averageDaysContagious = averageDaysContagious;
+	}
+
+	public int getAverageContagiousness() {
+		return averageContagiousness;
+	}
+
+	public void setAverageContagiousness(int averageContagiousness) {
+		this.averageContagiousness = averageContagiousness;
+	}
+
+	public int getAverageContagiousDays() {
+		return averageContagiousDays;
+	}
+
+	public void setAverageContagiousDays(int averageContagiousDays) {
+		this.averageContagiousDays = averageContagiousDays;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	public double getContagiousDaysStandardDeviation() {
 		return averageContagiousDays/4; // Greater the number of contagious days, greater the standard deviation
 	}
-
 	public double getContagiousnessStandardDeviation() {
 		return averageContagiousness/5; // Greater the contagiousness, greater the standard deviation
 	}
@@ -48,51 +105,7 @@ public class ParameterProfile {
 		return averageFriends/3; // Greater the number of friends, greater the standard deviation
 	}
 
-	public int getUnemployment() {
-		return unemployment;
-	}
-
-	public int getImmunityChance() {
-		return immunityChance;
-	}
-
-	public int getExecutionTime() {
-		return executionTime;
-	}
-
-	public int getInitialInfectedPeople() {
-		return initialInfectedPeople;
-	}
-
 	public int getDaysContagious(){
 		return (int) (random.nextGaussian() + this.averageDaysContagious) * 3;
 	}
-	
-	public void setAverageContagiousDays(int averageContagiousDays) {
-		this.averageContagiousDays = averageContagiousDays;
-	}
-	
-	public void setAverageFriends(int averageFriends) {
-		this.averageFriends = averageFriends;
-	}
-
-	public void setUnemployment(int unemployment) {
-		this.unemployment = unemployment;
-	}
-
-	public void setImmunityChance(int immunityChance) {
-		this.immunityChance = immunityChance;
-	}
-
-	public void setExecutionTime(int executionTime) {
-		this.executionTime = executionTime;
-	}
-
-	public void setInitialInfectedPeople(int initialInfectedPeople) {
-		this.initialInfectedPeople = initialInfectedPeople;
-	}
-
-
-	
-	
 }

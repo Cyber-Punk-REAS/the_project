@@ -5,32 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Person {
 	@Id
 	@GeneratedValue
-
-	@ManyToOne
-	private static int _id_ = 0;
-	private Random random = new Random();
 	private int id;
+
+	private static Random random = new Random();
 	private int contagiousDays;
 	private int maxContagiousDays;
+	@ManyToOne
 	private Area area;
 	private boolean immunity;
 	private boolean alive;
 	private boolean employed;
-	private Business business;
 	private double contagiousness;
-	private Person[] friends;
+	@ManyToOne
+	private Business business;
+	@ManyToMany
+	private List<Person> friends;
 
 	public Person(Area area){
-		this.id = Person._id_++;
 		this.area = area;
 		this.immunity = false;
 		this.employed = false;
@@ -39,7 +36,6 @@ public class Person {
 	}
 
 	public Person(Area area, ParameterProfile param, Business business){
-		this.id = Person._id_++;
 		this.area = area;
 		this.alive = true;
 		contagiousDays = 0;
@@ -47,6 +43,11 @@ public class Person {
 		setWork(param);
 		setBusiness(business);
 	}
+
+	public Person() {
+
+	}
+
 
 	public void setBusiness(Business business){
 		if(employed)
@@ -59,7 +60,7 @@ public class Person {
 		if(random.nextInt(100) < param.getImmunityChance())
 			immunity = true;
 	}
-	
+
 	public void survived() {
 		immunity = true;
 		contagiousness = 0;
@@ -72,11 +73,11 @@ public class Person {
 
 	public void setFriends(ParameterProfile param, List<Person> people){
 		for(int i = 0; i < Person.rndFriends(param); i++)
-			friends[i] = people.get(random.nextInt(people.size()));
+			friends.set(i, people.get(random.nextInt(people.size())));
 	}
 
 	public void setContagiousness(ParameterProfile param) {
-		this.contagiousness = ((random.nextGaussian() + param.getAverageContagiousness()) * param.getContagiousnessStandardDeviation()); 
+		this.contagiousness = ((random.nextGaussian() + param.getAverageContagiousness()) * param.getContagiousnessStandardDeviation());
 	}
 
 	public void setMaxContagiousDays(ParameterProfile param) {
@@ -84,13 +85,11 @@ public class Person {
 	}
 
 	private static int rndFriends(ParameterProfile param){
-		Random rnd = new Random();
-
-		return (int) ((rnd.nextGaussian() + param.getAverageFriends()) * param.getFriendsStandardDeviation());    
+		return (int) ((random.nextGaussian() + param.getAverageFriends()) * param.getFriendsStandardDeviation());
 	}
 
-	public ArrayList<Person> getPeopleCouldMeet() {
-		ArrayList<Person> peopleCouldMeet = new ArrayList<>();
+	public List<Person> getPeopleCouldMeet() {
+		List<Person> peopleCouldMeet = new ArrayList<>();
 		for(Person friend: friends) {
 			if(area.getRestrictionPolicy().isCurfew()) {
 				if(friend.getArea().getId() == area.getId())
@@ -101,8 +100,9 @@ public class Person {
 					peopleCouldMeet.add(friend);
 			}
 		}
+		return peopleCouldMeet;
 	}
-	
+
 	public void incrementContagiousDays() {
 		contagiousDays++;
 	}
@@ -118,11 +118,11 @@ public class Person {
 	public int getContagiousDays() {
 		return contagiousDays;
 	}
-	
+
 	public int getMaxContagiousDays() {
 		return maxContagiousDays;
 	}
-	
+
 	public boolean isImmunity() {
 		return immunity;
 	}
@@ -143,7 +143,7 @@ public class Person {
 		return contagiousness;
 	}
 
-	public Person[] getFriends() {
+	public List<Person> getFriends() {
 		return friends;
 	}
 }
