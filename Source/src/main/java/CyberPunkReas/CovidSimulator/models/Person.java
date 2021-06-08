@@ -5,44 +5,55 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Person {
 	@Id
 	@GeneratedValue
-
-	@ManyToOne
-	private static int _id_ = 0;
-	private Random random = new Random();
 	private int id;
+
+	private static Random random = new Random();
+	private int contagiousDays;
+	private int maxContagiousDays;
+	@ManyToOne
 	private Area area;
-	private boolean startingImmunity;
+	private boolean immunity;
 	private boolean alive;
 	private boolean employed;
-	private Business business;
 	private double contagiousness;
-	private Person[] friends;
+  private double mortalityChance;
+
+	@ManyToOne
+	private Business business;
+	@ManyToMany
+	private List<Person> friends;
 
 	public Person(Area area){
-		this.id = Person._id_++;
 		this.area = area;
-		this.startingImmunity = false;
+		this.immunity = false;
 		this.employed = false;
 		this.alive = true;
+		contagiousDays = 0;
 	}
-	
+
 	public Person(Area area, ParameterProfile param, Business business){
-		this.id = Person._id_++;
 		this.area = area;
 		this.alive = true;
+		contagiousDays = 0;
 		setStartingImmunity(param);
-		setWork(param, Business business);
+		setWork(param);
 		setBusiness(business);
+		setContagiousness(param);
+		setMortalityChance(param);
+		setMaxContagiousDays(param);
+		// Set friends is than in area after initializing the population
 	}
+
+	public Person() {
+
+	}
+
 
 	public void setBusiness(Business business){
 		if(employed)
@@ -53,7 +64,12 @@ public class Person {
 
 	public void setStartingImmunity(ParameterProfile param){
 		if(random.nextInt(100) < param.getImmunityChance())
-			startingImmunity = true;
+			immunity = true;
+	}
+
+	public void survived() {
+		immunity = true;
+		contagiousness = 0;
 	}
 
 	public void setWork(ParameterProfile param){
@@ -63,31 +79,45 @@ public class Person {
 
 	public void setFriends(ParameterProfile param, List<Person> people){
 		for(int i = 0; i < Person.rndFriends(param); i++)
-			friends[i] = people.get(random.nextInt(people.size()));
+			friends.set(i, people.get(random.nextInt(people.size())));
 	}
 
+	public void setContagiousness(ParameterProfile param) {
+		this.contagiousness = ((random.nextGaussian() + param.getAverageContagiousness()) * param.getContagiousnessStandardDeviation());
+	}
+	
+	public void setMortalityChance(ParameterProfile param) {
+		this.mortalityChance = ((random.nextGaussian() + param.getMortalityRate()) * param.getMortalityStandardDeviation()); 
+	}
+
+	public void setMaxContagiousDays(ParameterProfile param) {
+		this.maxContagiousDays = (int) ((random.nextGaussian() + param.getAverageContagiousDays()) * param.getContagiousDaysStandardDeviation());
+	}
 
 	private static int rndFriends(ParameterProfile param){
-		Random rnd = new Random();
-
-		return (int) ((rnd.nextGaussian() + param.getAverageFriends()) * param.getFriendsStandardDeviation());    
+		return (int) ((random.nextGaussian() + param.getAverageFriends()) * param.getFriendsStandardDeviation());
 	}
 
-	public ArrayList<Person> getPeopleCouldMeet() {
-		ArrayList<Person> peopleCouldMeet = new ArrayList<>();
+	public List<Person> getPeopleCouldMeet() {
+		List<Person> peopleCouldMeet = new ArrayList<>();
 		for(Person friend: friends) {
-			if(area.getRestrictionPolicy().isCurfew()) {
+			if(area.getRestrictionPolicy().isCurfew() && friend.alive) {
 				if(friend.getArea().getId() == area.getId())
 					peopleCouldMeet.add(friend);
 			}
 			else {
-				if(!friend.getArea().getRestrictionPolicy().isCurfew())
+				if(!friend.getArea().getRestrictionPolicy().isCurfew() && friend.alive)
 					peopleCouldMeet.add(friend);
 			}
 		}
+		return peopleCouldMeet;
 	}
-  
-  public int getId() {
+
+	public void incrementContagiousDays() {
+		contagiousDays++;
+	}
+
+	public int getId() {
 		return id;
 	}
 
@@ -95,8 +125,20 @@ public class Person {
 		return area;
 	}
 
-	public boolean isStartingImmunity() {
-		return startingImmunity;
+	public int getContagiousDays() {
+		return contagiousDays;
+	}
+
+	public int getMaxContagiousDays() {
+		return maxContagiousDays;
+	}
+	
+	public double getMortalityChance() {
+		return mortalityChance;
+	}
+	
+	public boolean isImmunity() {
+		return immunity;
 	}
 
 	public boolean isAlive() {
@@ -115,7 +157,12 @@ public class Person {
 		return contagiousness;
 	}
 
-	public Person[] getFriends() {
+	public List<Person> getFriends() {
 		return friends;
+	}
+
+	public void died() {
+		alive = false;
+		contagiousness = 0;
 	}
 }
