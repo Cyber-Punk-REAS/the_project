@@ -3,14 +3,16 @@ package CyberPunkReas.CovidSimulator.models;
 import java.util.Random;
 
 public class ParameterProfile {
+	private static final int MORTALITY_RATE = 2; // 2% mortality rate
 	private int averageContagiousDays,
 				averageContagiousness,
 				averageDaysContagious,
 				averageFriends,
-				unemployment,
-				immunityChance,
 				executionTime,
-				initialInfectedPeople;
+				immunityChance,
+				initialInfectedPeople,
+				mortalityRate = MORTALITY_RATE, 
+				unemployment;
 	private Random random = new Random();
 	
 	public ParameterProfile(int averageContagiousDays, int averageContagiousness, int averageDaysContagious, int averageFriends, int executionTime, int immunityChance, int initialInfectedPeople, int unemployment) {
@@ -47,6 +49,10 @@ public class ParameterProfile {
 	public int getFriendsStandardDeviation() {
 		return averageFriends/3; // Greater the number of friends, greater the standard deviation
 	}
+	
+	public double getMortalityStandardDeviation() {
+		return mortalityRate/3; // Greater the number of friends, greater the standard deviation
+	}
 
 	public int getUnemployment() {
 		return unemployment;
@@ -62,6 +68,10 @@ public class ParameterProfile {
 
 	public int getInitialInfectedPeople() {
 		return initialInfectedPeople;
+	}
+	
+	public int getMortalityRate() {
+		return mortalityRate;
 	}
 
 	public int getDaysContagious(){

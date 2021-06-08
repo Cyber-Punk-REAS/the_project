@@ -27,6 +27,7 @@ public class Person {
 	private boolean employed;
 	private Business business;
 	private double contagiousness;
+	private double mortalityChance;
 	private Person[] friends;
 
 	public Person(Area area){
@@ -78,6 +79,10 @@ public class Person {
 	public void setContagiousness(ParameterProfile param) {
 		this.contagiousness = ((random.nextGaussian() + param.getAverageContagiousness()) * param.getContagiousnessStandardDeviation()); 
 	}
+	
+	public void setMortalityChance(ParameterProfile param) {
+		this.mortalityChance = ((random.nextGaussian() + param.getMortalityRate()) * param.getMortalityStandardDeviation()); 
+	}
 
 	public void setMaxContagiousDays(ParameterProfile param) {
 		this.maxContagiousDays = (int) ((random.nextGaussian() + param.getAverageContagiousDays()) * param.getContagiousDaysStandardDeviation());
@@ -92,15 +97,16 @@ public class Person {
 	public ArrayList<Person> getPeopleCouldMeet() {
 		ArrayList<Person> peopleCouldMeet = new ArrayList<>();
 		for(Person friend: friends) {
-			if(area.getRestrictionPolicy().isCurfew()) {
+			if(area.getRestrictionPolicy().isCurfew() && friend.alive) {
 				if(friend.getArea().getId() == area.getId())
 					peopleCouldMeet.add(friend);
 			}
 			else {
-				if(!friend.getArea().getRestrictionPolicy().isCurfew())
+				if(!friend.getArea().getRestrictionPolicy().isCurfew() && friend.alive)
 					peopleCouldMeet.add(friend);
 			}
 		}
+		return peopleCouldMeet;
 	}
 	
 	public void incrementContagiousDays() {
@@ -121,6 +127,10 @@ public class Person {
 	
 	public int getMaxContagiousDays() {
 		return maxContagiousDays;
+	}
+	
+	public double getMortalityChance() {
+		return mortalityChance;
 	}
 	
 	public boolean isImmunity() {
@@ -145,5 +155,10 @@ public class Person {
 
 	public Person[] getFriends() {
 		return friends;
+	}
+
+	public void died() {
+		alive = false;
+		contagiousness = 0;
 	}
 }
