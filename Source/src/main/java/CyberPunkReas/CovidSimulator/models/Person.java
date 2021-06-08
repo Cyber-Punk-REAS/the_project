@@ -44,6 +44,10 @@ public class Person {
 		setStartingImmunity(param);
 		setWork(param);
 		setBusiness(business);
+		setContagiousness(param);
+		setMortalityChance(param);
+		setMaxContagiousDays(param);
+		// Set friends is than in area after initializing the population
 	}
 
 	public Person() {

@@ -19,15 +19,16 @@ public class Result
     // private ParameterProfile pf;
 
     // can't save a list in a single field
-    private String daysDeaths;
     private String daysInfected;
+    private String daysDeaths;
 
     public Result() {
 
     }
 
-    public int getnDays() {
-        return nDays;
+    public Result(List<Integer> daysInfections, List<Integer> daysDeaths) {
+        setDaysInfections(daysInfections);
+        setDaysDeaths(daysDeaths);
     }
 
     public List<Integer> getDaysDeaths() {
@@ -46,6 +47,14 @@ public class Result
         }
 
         return d;
+    }
+
+    public int getTotalInfected() {
+        return totalInfected;
+    }
+
+    public int getTotalDeaths() {
+        return totalDeaths;
     }
 
     public void setDaysDeaths(List<Integer> deaths) {
@@ -74,7 +83,7 @@ public class Result
         return d;
     }
 
-    public void setDaysInfected(List<Integer> infected) {
+    public void setDaysInfections(List<Integer> infected) {
         String d = "";
         for(int i : infected) {
             d.concat(String.valueOf(i));
@@ -92,8 +101,8 @@ public class Result
             catch (NumberFormatException e) {
                 e.printStackTrace();
             }
-         }
-    totalInfected = res;
+        }
+        totalInfected = res;
     }
 
     public void setTotalDeaths() {
@@ -106,7 +115,15 @@ public class Result
             catch (NumberFormatException e) {
                 e.printStackTrace();
             }
-         }
-    totalDeaths = res;
+        }
+        totalDeaths = res;
+    }
+
+    public void setTotalDeaths(int deaths){
+        totalDeaths=deaths;
+    }
+
+    public void setTotalInfected(int infected){
+        totalInfected=infected;
     }
 }
