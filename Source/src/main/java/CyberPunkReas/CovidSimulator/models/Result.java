@@ -109,13 +109,4 @@ public class Result
          }
     totalDeaths = res;
     }
-
-public void setTotalDeathsParameter(int deaths){
-    totalDeaths=deaths;
-}
-
-public void setTotalInfectedParameter(int infected){
-    totalInfected=infected;
-}
-
 }
