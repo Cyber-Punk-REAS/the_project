@@ -16,7 +16,6 @@ public class Area {
     private int size;
     private int numberOfBusiness;
     @OneToOne
-    private ParameterProfile param;
     private Restriction restrictionPolicy;
     @OneToMany()
     private List<Business> businesses;
@@ -31,14 +30,6 @@ public class Area {
 
     public Area() {
     }
-    
-    public ParameterProfile getParam() {
-		return param;
-	}
-
-	public void setParam(ParameterProfile param) {
-		this.param = param;
-	}
 
 	public int getPopulationSize() {
 		return populationSize;
@@ -68,7 +59,7 @@ public class Area {
         return population;
     }
     
-    public void setPopulation() {
+    public void setPopulation(ParameterProfile param) {
     	Random rnd = new Random();
     	population = new ArrayList<>();
     	for(int i = 0; i < populationSize; i++) {
