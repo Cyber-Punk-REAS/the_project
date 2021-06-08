@@ -21,7 +21,7 @@ public class ParameterProfile {
 	private int immunityChance;
 	private int executionTime;
 	private int initialInfectedPeople;
-  private int mortalityRate = MORTALITY_RATE,
+	private int mortalityRate = MORTALITY_RATE;
 
 	private static Random random = new Random();
 
@@ -48,7 +48,7 @@ public class ParameterProfile {
 	public void setImmunityChance(int immunityChance) {
 		this.immunityChance = immunityChance;
 	}
-	
+
 	public double getMortalityStandardDeviation() {
 		return mortalityRate/3; // Greater the number of friends, greater the standard deviation
 	}

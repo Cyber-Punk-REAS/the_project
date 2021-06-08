@@ -9,113 +9,122 @@ import java.util.List;
 @Entity
 public class Result
 {
-    @Id
-    @GeneratedValue
-    private int id;
-    private int totalInfected=0;
-    private int totalDeaths=0;
+	@Id
+	@GeneratedValue
+	private int id;
+	private int totalInfected=0;
+	private int totalDeaths=0;
 
-    // TODO: add parameter profile
-    // private ParameterProfile pf;
+	// TODO: add parameter profile
+	// private ParameterProfile pf;
 
-    // can't save a list in a single field
-    private String daysDeaths;
-    private String daysInfected;
+	// can't save a list in a single field
+	private String daysInfected;
+	private String daysDeaths;
 
-    public Result() {
+	public Result() {
 
-    }
+	}
 
-    public int getnDays() {
-        return nDays;
-    }
+	public Result(List<Integer> daysInfections, List<Integer> daysDeaths) {
+		setDaysInfections(daysInfections);
+		setDaysDeaths(daysDeaths);
+	}
 
-    public List<Integer> getDaysDeaths() {
-        List<Integer> d = new ArrayList<Integer>();
-        int val= 0;
+	public List<Integer> getDaysDeaths() {
+		List<Integer> d = new ArrayList<Integer>();
+		int val= 0;
 
-        for(String field : this.daysDeaths.split(",")) {
-            try {
-                val = Integer.parseInt(field);
-            }
-            // If the String contains other thing that digits and commas
-            catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-            d.add(val);
-        }
+		for(String field : this.daysDeaths.split(",")) {
+			try {
+				val = Integer.parseInt(field);
+			}
+			// If the String contains other thing that digits and commas
+			catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+			d.add(val);
+		}
 
-        return d;
-    }
+		return d;
+	}
 
-    public void setDaysDeaths(List<Integer> deaths) {
-        String d = "";
-        for(int i : deaths) {
-            d.concat(String.valueOf(i));
-        }
-        this.daysDeaths = d;
-    }
+	public int getTotalInfected() {
+		return totalInfected;
+	}
 
-    public List<Integer> getDaysInfected() {
-        List<Integer> d = new ArrayList<Integer>();
-        int val= 0;
+	public int getTotalDeaths() {
+		return totalDeaths;
+	}
 
-        for(String field : this.daysInfected.split(",")) {
-            try {
-                val = Integer.parseInt(field);
-            }
-            // If the String contains other thing that digits and commas
-            catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-            d.add(val);
-        }
+	public void setDaysDeaths(List<Integer> deaths) {
+		String d = "";
+		for(int i : deaths) {
+			d.concat(String.valueOf(i));
+		}
+		this.daysDeaths = d;
+	}
 
-        return d;
-    }
+	public List<Integer> getDaysInfected() {
+		List<Integer> d = new ArrayList<Integer>();
+		int val= 0;
 
-    public void setDaysInfected(List<Integer> infected) {
-        String d = "";
-        for(int i : infected) {
-            d.concat(String.valueOf(i));
-        }
-        this.daysInfected = d;
-    }
+		for(String field : this.daysInfected.split(",")) {
+			try {
+				val = Integer.parseInt(field);
+			}
+			// If the String contains other thing that digits and commas
+			catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+			d.add(val);
+		}
 
-    public void setTotalInfected() {
-        int res=0;
-        for(String field : this.daysInfected.split(",")) {
-            try {
-                res += Integer.parseInt(field);
+		return d;
+	}
 
-            } 
-            catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-         }
-    totalInfected = res;
-    }
+	public void setDaysInfections(List<Integer> infected) {
+		String d = "";
+		for(int i : infected) {
+			d.concat(String.valueOf(i));
+		}
+		this.daysInfected = d;
+	}
 
-    public void setTotalDeaths() {
-        int res=0;
-        for(String field : this.daysDeaths.split(",")) {
-            try {
-                res += Integer.parseInt(field);
+	public void setTotalInfected() {
+		int res=0;
+		for(String field : this.daysInfected.split(",")) {
+			try {
+				res += Integer.parseInt(field);
 
-            } 
-            catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-         }
-    totalDeaths = res;
-    }
+			} 
+			catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
+		totalInfected = res;
+	}
 
-public void setTotalDeathsParameter(int deaths){
-    totalDeaths=deaths;
-}
+	public void setTotalDeaths() {
+		int res=0;
+		for(String field : this.daysDeaths.split(",")) {
+			try {
+				res += Integer.parseInt(field);
 
-public void setTotalInfectedParameter(int infected){
-    totalInfected=infected;
-}
+			} 
+			catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+		}
+		totalDeaths = res;
+	}
+
+	public void setTotalDeaths(int deaths){
+		totalDeaths=deaths;
+	}
+
+	public void setTotalInfected(int infected){
+		totalInfected=infected;
+	}
 
 }

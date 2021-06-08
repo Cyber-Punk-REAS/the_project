@@ -9,7 +9,11 @@ public class Area {
     @GeneratedValue
     private int id;
     private String name;
+    private int populationSize;
+    private int size;
+    private int numberOfBusiness;
     @OneToOne
+    private ParameterProfile param;
     private Restriction restrictionPolicy;
     @OneToMany()
     private List<Business> businesses;
@@ -24,11 +28,44 @@ public class Area {
 
     public Area() {
     }
+        
+    public int getPopulationSize() {
+		return populationSize;
+	}
 
-    public List<Person> getPopulation() {
+	public int getSize() {
+		return size;
+	}
+
+	public int getNumberOfBusiness() {
+		return numberOfBusiness;
+	}
+
+	public void setPopulationSize(int populationSize) {
+		this.populationSize = populationSize;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public void setNumberOfBusiness(int numberOfBusiness) {
+		this.numberOfBusiness = numberOfBusiness;
+	}
+
+	public List<Person> getPopulation() {
         return population;
     }
-
+    
+    public void setPopulation() {
+    	for(int i = 0; i < populationSize; i++) {
+    		Person p = new Person(this, param, );
+    	}
+    	for(Person p : population) {
+    		
+    	}
+    }
+    
     public void setPopulation(List<Person> areaPopulation) {
         population = areaPopulation;
     }

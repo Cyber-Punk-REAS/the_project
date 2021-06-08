@@ -9,23 +9,24 @@ public class Simulation {
 	private ParameterProfile param;
 	private Region region;
 	private Random rnd = new Random();
-	private int[] infectedPerDay;
+	private List<Integer> infectedPerDay = new ArrayList<Integer>();
+	private List<Integer> deadPerDay = new ArrayList<Integer>();
 	
 	public Simulation(Region region, ParameterProfile param)
 	{
 		this.param = param;
 		this.region = region;
-		infectedPerDay = new int[param.getExecutionTime()];
 	}
 	
 	//OTHER METHODS
-	public void run()
+	public Result run()
 	{
-		
-		for(Area area : region.getAreas()) {
-			// Execution days of the simulation
-			for(int i = 0; i < param.getExecutionTime(); i++) {
-				infectedPerDay[i] = 0;
+
+		// Execution days of the simulation
+		for(int i = 0; i < param.getExecutionTime(); i++) {
+			int infected = 0;
+			int dead = 0;
+			for(Area area : region.getAreas()) {
 				// Person spread loop
 				for(Person person : area.getPopulation()) {
 					// Friends spread section
@@ -69,10 +70,13 @@ public class Simulation {
 				// Increment days contagious & get amount of infected people
 				for(Person person : area.getPopulation()) {
 					if(person.getContagiousness() > 0) {
+						if(person.getContagiousDays() == 0)
+							infected++;
 						person.incrementContagiousDays();
 						if(person.getContagiousDays() > person.getMaxContagiousDays()) {
 							if(rnd.nextDouble()*100 < person.getMortalityChance()) {
 								person.died();
+								dead++;
 								System.out.println("xxx"+person.getId()+"xxx"); //TODO, show in web interface NOT MANDATORY FOR DEMO
 							}
 							else {
@@ -80,15 +84,16 @@ public class Simulation {
 								System.out.println("|||"+person.getId()+"|||"); //TODO, show in web interface NOT MANDATORY FOR DEMO								
 							}
 						}
-						infectedPerDay[i]++;
 					}
 				}
+				infectedPerDay.add(infected);
+				deadPerDay.add(dead);
 			}
-			
+
 		}
-		
+
 		//IT RETURNS A LIST OF INFECTED PEOPLE PER DAY
-		return new Result(infectedPerDay, deadTotal);
+		return new Result(infectedPerDay, deadPerDay);
 	}
 
 	public ParameterProfile getParam() {
