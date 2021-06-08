@@ -26,36 +26,20 @@ public class Business {
 		this.id = id;
 		this.essential = essential;
 		this.area = area;
-	}	
-	
-	public boolean isEsential() {
-		return essential;
 	}
 
-	public Region getArea() {
+	public Business() {
+
+	}
+
+	public Area getArea() {
 		return area;
 	}
 
-	public Integer getId()
-	{
-		return this.id;
-	}
-	
-	public boolean getType() 
-	{
-		return essential;
-	}
-	
-	public void setId(Integer id)
-	{
-		this.id = id;
+	public void setArea(Area area) {
+		this.area = area;
 	}
 
-	public void setType(boolean isEsential) 
-	{
-		this.essential = isEsential;
-	}
-	
 	public List<Person> getWorkers() {
 		return workers;
 	}
@@ -63,13 +47,24 @@ public class Business {
 	public void setWorkers(List<Person> workers) {
 		this.workers = workers;
 	}
-	
+
 	public void addWorker(Person person) {
 		workers.add(person);
 	}
 
-	public void setArea(Area area) {
-		this.area = area;
+	public Integer getId() {
+		return id;
 	}
-	
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public boolean isEssential() {
+		return essential;
+	}
+
+	public void setEssential(boolean essential) {
+		this.essential = essential;
+	}
 }

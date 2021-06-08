@@ -22,15 +22,15 @@ public class Simulation {
 	public void run()
 	{
 		
-		for(Area area : region.getAreasList()) {
+		for(Area area : region.getAreas()) {
 			// Execution days of the simulation
 			for(int i = 0; i < param.getExecutionTime(); i++) {
 				infectedPerDay[i] = 0;
 				// Person spread loop
 				for(Person person : area.getPopulation()) {
 					// Friends spread section
-					if(person.getContagiousness() > 0 && person.getFriends().length > 0) {
-						ArrayList<Person> peopleCouldMeetToday = person.getPeopleCouldMeet();
+					if(person.getContagiousness() > 0 && person.getFriends().size()> 0) {
+						List<Person> peopleCouldMeetToday = person.getPeopleCouldMeet();
 						if(peopleCouldMeetToday.size() > 0) {
 							int maxPeopleMetToday = peopleCouldMeetToday.size();
 							int peopleMetToday = rnd.nextInt(maxPeopleMetToday);
